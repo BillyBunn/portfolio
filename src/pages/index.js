@@ -1,18 +1,19 @@
 import React from "react"
 
 import Layout from "../components/layout"
+import Section from '../components/section'
 
 export default () => (
   <Layout>
-    <section>
+    <Section>
       <h1>Billy Bunn</h1>
       <p>
         Software Developer, CA transplant, & recovering public accountant. Left
         the finance world in 2018 to pursue the dream of building software
         full-time.
       </p>
-    </section>
-    <section>
+    </Section>
+    <Section>
       <h2>About</h2>
       <p>
         Right out of high school, I moved from Northern California to Seattle. I
@@ -24,8 +25,8 @@ export default () => (
         industries. In late 2018, I left the finance world to pursue my passion
         and study coding full-time.
       </p>
-    </section>
-    <section>
+    </Section>
+    <Section>
       <h2>Projects</h2>
       <ul>
         <li>
@@ -69,12 +70,12 @@ export default () => (
           </p>
         </li>
       </ul>
-    </section>
-    <section>
+    </Section>
+    <Section>
       <h2>Contact</h2>
       <p>
         Here's how to get in contact with me.
       </p>
-    </section>
+    </Section>
   </Layout>
 )
