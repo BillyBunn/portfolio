@@ -1,4 +1,6 @@
 import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+
 import styled from "styled-components"
 
 import TitleLink from "./title-link"
@@ -11,8 +13,8 @@ const Header = styled.header`
       display: flex;
       justify-content: space-evenly;
       > li {
-        ${'' /* background: pink; */}
-        ${'' /* height: 100%; */}
+        ${"" /* background: pink; */}
+        ${"" /* height: 100%; */}
         display: inline;
       }
     }
@@ -20,12 +22,23 @@ const Header = styled.header`
 `
 
 export default () => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  )
   return (
     <Header>
       <nav>
         <ul>
           <li>
-            <TitleLink to="/">Billy Bunn</TitleLink>
+            <TitleLink to="/">{data.site.siteMetadata.title}</TitleLink>
           </li>
           <li>
             <NavLink to="/about">About</NavLink>

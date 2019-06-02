@@ -5,6 +5,23 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [`gatsby-plugin-styled-components`],
+  // Metadata ----------------------------------------
+  siteMetadata: {
+    title: `Billy Bunn`,
+    siteUrl: `https://www.billybunn.github.io`,
+    description: `Software Developer and former Public Accountant`,
+  },
+  // Plugins ----------------------------------------
+  plugins: [
+    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/src/`,
+      },
+    },
+    // Transformer plugin that can transform markdown files
+    `gatsby-transformer-remark`,
+  ],
 }
