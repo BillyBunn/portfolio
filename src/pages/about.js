@@ -1,12 +1,6 @@
 import React from "react"
-
-import styled from "styled-components"
-
+// import styled from "styled-components"
 import Layout from "../components/layout"
-
-const TagLine = styled.p`
-  font-weight: bold;
-`
 
 export default () => (
   <Layout>
