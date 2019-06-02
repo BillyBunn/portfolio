@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import styled from "styled-components"
 import Layout from "../components/layout"
 
@@ -27,7 +27,7 @@ export default ({ data }) => {
       <Projects>
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>
-            <h3>{node.frontmatter.title}</h3>
+            <h3><Link to={node.fields.slug}>{node.frontmatter.title}</Link></h3>
             <img src={node.frontmatter.image} alt={node.frontmatter.title} />
             <p>{node.frontmatter.description}</p>
             <a href={node.frontmatter.sourceCode}>GitHub</a>
@@ -41,7 +41,7 @@ export default ({ data }) => {
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//src/pages/projects//" } }
+      filter: { fileAbsolutePath: { regex: "//src/pages/work//" } }
     ) {
       edges {
         node {
@@ -52,6 +52,9 @@ export const query = graphql`
             description
             image
             sourceCode
+          }
+          fields {
+            slug
           }
         }
       }

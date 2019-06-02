@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import styled from "styled-components"
 import Layout from "../components/layout"
 
@@ -31,7 +31,9 @@ export default ({ data }) => {
           <div key={node.id}>
             <p>{node.frontmatter.date}</p>
             <div>
-              <h3>{node.frontmatter.title}</h3>
+              <h3>
+                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+              </h3>
               <p>{node.frontmatter.description}</p>
             </div>
           </div>
@@ -44,7 +46,7 @@ export default ({ data }) => {
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//src/pages/blog-posts//" } }
+      filter: { fileAbsolutePath: { regex: "//src/pages/blog//" } }
     ) {
       edges {
         node {
@@ -54,6 +56,9 @@ export const query = graphql`
             date(formatString: "DD MMMM YYYY")
             description
             image
+          }
+          fields {
+            slug
           }
         }
       }

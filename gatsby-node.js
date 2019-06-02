@@ -34,6 +34,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 // The createPages API is called by Gatsby so plugins can add pages.
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
+  const blogTemplate = path.resolve(`./src/templates/blog.js`)
+  const projectTemplate = path.resolve(`./src/templates/project.js`)
 
   // **Note:** The graphql function call returns a Promise
   return graphql(`
@@ -44,24 +46,37 @@ exports.createPages = ({ graphql, actions }) => {
             fields {
               slug
             }
-            parent {
-              ... on File {
-                relativeDirectory
-              }
-            }
           }
         }
       }
     }
   `).then(result => {
-    console.log(JSON.stringify(result, null, 4))
+    if (result.errors) {
+      throw result.errors
+    }
+
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      console.log("NODE SLUG:", node.fields.slug)
-      console.log("NODE PARENT:", node.parent.relativeDirectory)
+      // console.log("NODE SLUG:", node.fields.slug)
+      // console.log(
+      //   path
+      //     .dirname(node.fields.slug)
+      //     .split(path.sep)
+      //     .pop(),
+      //   "\n"
+      // )
+
+      // Gets parent directory name
+      let parent = path
+        .dirname(node.fields.slug)
+        .split(path.sep)
+        .pop()
+
+      // Changes page template based on parent directory name
+      let template = parent === "blog" ? blogTemplate : projectTemplate
 
       createPage({
         path: node.fields.slug,
-        component: path.resolve(`./src/templates/project.js`),
+        component: template,
         context: {
           // Data passed to context is available
           // in page queries as GraphQL variables.
