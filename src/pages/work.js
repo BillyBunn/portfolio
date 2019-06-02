@@ -1,6 +1,6 @@
 import React from "react"
 
-import Layout from '../components/layout'
+import Layout from "../components/layout"
 
 export default () => (
   <Layout>
@@ -8,7 +8,7 @@ export default () => (
     <ul>
       <li>
         <h3>Project Name</h3>
-        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" alt="project screenshot" />
         <p>
           Some descriptive text about this particular project. Maybe this is
           just two sentences then there's a link to the source code
@@ -16,7 +16,7 @@ export default () => (
       </li>
       <li>
         <h3>Project Name</h3>
-        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" alt="project screenshot" />
         <p>
           Some descriptive text about this particular project. Maybe this is
           just two sentences then there's a link to the source code
@@ -24,7 +24,7 @@ export default () => (
       </li>
       <li>
         <h3>Project Name</h3>
-        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" alt="project screenshot" />
         <p>
           Some descriptive text about this particular project. Maybe this is
           just two sentences then there's a link to the source code
@@ -32,7 +32,7 @@ export default () => (
       </li>
       <li>
         <h3>Project Name</h3>
-        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" alt="project screenshot" />
         <p>
           Some descriptive text about this particular project. Maybe this is
           just two sentences then there's a link to the source code
@@ -40,7 +40,7 @@ export default () => (
       </li>
       <li>
         <h3>Project Name</h3>
-        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/150" alt="project screenshot" />
         <p>
           Some descriptive text about this particular project. Maybe this is
           just two sentences then there's a link to the source code
