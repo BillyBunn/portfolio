@@ -10,9 +10,10 @@ const Layout = styled.div`
   height: 100%;
   background: ${props => props.theme.backgroundColor};
   color: ${props => props.theme.textColor};
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  line-height: calc(1rem * 1.5);
+  ${'' /* font-family: Helvetica, Arial, sans-serif; */}
+  ${'' /* font-size: 1rem; */}
+  ${'' /* line-height: calc(1rem * 1.5); */}
+  line-height: 1.5;
 
   a,
   a:visited {
@@ -21,8 +22,8 @@ const Layout = styled.div`
 
   h1,
   h2 {
-    font-size: 1.5rem;
-    line-height: calc(1.5rem * 1.5);
+    ${'' /* font-size: 1.5rem; */}
+    ${'' /* line-height: calc(1.5rem * 1.5); */}
   }
 
   > header > *,
@@ -40,8 +41,6 @@ const Layout = styled.div`
 
   > main {
     flex: 1 0 auto;
-    margin: 20px 0px;
-
     > h2 {
       text-align: center;
     }

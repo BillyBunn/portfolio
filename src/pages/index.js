@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 
 const TagLine = styled.p`
-  font-weight: bold;
+  ${'' /* font-weight: bold; */}
   text-align: center;
 `
 
