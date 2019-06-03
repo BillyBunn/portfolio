@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 import styled, { ThemeProvider } from "styled-components"
 
 import Header from "../header"
@@ -10,9 +11,9 @@ const Layout = styled.div`
   height: 100%;
   background: ${props => props.theme.backgroundColor};
   color: ${props => props.theme.textColor};
-  ${'' /* font-family: Helvetica, Arial, sans-serif; */}
-  ${'' /* font-size: 1rem; */}
-  ${'' /* line-height: calc(1rem * 1.5); */}
+  ${"" /* font-family: Helvetica, Arial, sans-serif; */}
+  ${"" /* font-size: 1rem; */}
+  ${"" /* line-height: calc(1rem * 1.5); */}
   line-height: 1.5;
 
   a,
@@ -22,8 +23,8 @@ const Layout = styled.div`
 
   h1,
   h2 {
-    ${'' /* font-size: 1.5rem; */}
-    ${'' /* line-height: calc(1.5rem * 1.5); */}
+    ${"" /* font-size: 1.5rem; */}
+    ${"" /* line-height: calc(1.5rem * 1.5); */}
   }
 
   > header > *,
@@ -41,9 +42,6 @@ const Layout = styled.div`
 
   > main {
     flex: 1 0 auto;
-    > h2 {
-      text-align: center;
-    }
   }
 
   > footer {
@@ -71,6 +69,10 @@ const theme = {
 export default ({ children }) => (
   <ThemeProvider theme={theme}>
     <Layout>
+      <Helmet>
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,600,600i,900&display=swap" rel="stylesheet" />
+      </Helmet>
+
       <Header />
       <main>{children}</main>
       <Footer />

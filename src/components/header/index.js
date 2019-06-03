@@ -13,8 +13,6 @@ const Header = styled.header`
       display: flex;
       justify-content: space-evenly;
       > li {
-        ${"" /* background: pink; */}
-        ${"" /* height: 100%; */}
         display: inline;
       }
     }
@@ -37,8 +35,8 @@ export default () => {
     <Header>
       <nav>
         <ul>
-          <li>
-            <TitleLink to="/">{data.site.siteMetadata.title}</TitleLink>
+        <li>
+            <TitleLink to="/">Home</TitleLink>
           </li>
           <li>
             <NavLink to="/about">About</NavLink>
@@ -46,6 +44,9 @@ export default () => {
           <li>
             <NavLink to="/work">Work</NavLink>
           </li>
+          {/* <li>
+            <TitleLink to="/">{data.site.siteMetadata.title}</TitleLink>
+          </li> */}
           <li>
             <NavLink to="/blog">Blog</NavLink>
           </li>
