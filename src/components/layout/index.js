@@ -2,6 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import styled, { ThemeProvider } from "styled-components"
 
+import WindowDimensionsProvider from "../WindowDimensionsProvider"
 import Header from "../header"
 import Footer from "../footer"
 
@@ -27,9 +28,9 @@ const Layout = styled.div`
     ${"" /* line-height: calc(1.5rem * 1.5); */}
   }
 
-  > header > *,
-  > main > *,
-  > footer > * {
+  ${"" /* > header > *, */}
+  > main > div,
+  > footer > ul {
     margin: 0px auto;
     max-width: 960px;
     width: 100%;
@@ -67,15 +68,20 @@ const theme = {
 }
 
 export default ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <Layout>
-      <Helmet>
-        <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,600,600i,900&display=swap" rel="stylesheet" />
-      </Helmet>
+  <WindowDimensionsProvider>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <Helmet>
+          <link
+            href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,600,600i,900&display=swap"
+            rel="stylesheet"
+          />
+        </Helmet>
 
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </Layout>
-  </ThemeProvider>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </Layout>
+    </ThemeProvider>
+  </WindowDimensionsProvider>
 )
