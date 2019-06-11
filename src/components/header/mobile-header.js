@@ -88,68 +88,23 @@ const activeLinkStyles = {
   color: "pink",
 }
 
-function Nav({ open }) {
-  return (
-    <MobileNav style={{ display: open ? "flex" : "none" }}>
-      <ul>
-        <li>
-          <NavLink to="/about" activeStyles={activeLinkStyles}>
-            About
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/work" activeStyles={activeLinkStyles}>
-            Work
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/blog" activeStyles={activeLinkStyles}>
-            Blog
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/contact" activeStyles={activeLinkStyles}>
-            Contact
-          </NavLink>
-        </li>
-      </ul>
-    </MobileNav>
-  )
-}
-
-export default function Header() {
-  const node = React.createRef()
-  // const node = useRef();
-  console.log("NODE:", node)
+export default () => {
   const [open, setOpen] = useState(false)
+  const navRef = useRef()
 
-  const handleClickOutside = e => {
-    console.log("clicking anywhere")
-    console.log(e.target)
-    // if (node.current.contains(e.target)) {
-    //   // inside click
-    //   return
-    // }
-
-    // outside click
-    setOpen(false)
+  const handleClick = e => {
+    if (navRef.current.contains(e.target)) return // inside click
+    setOpen(false) // outside click
   }
 
   useEffect(() => {
-    if (open) {
-      document.addEventListener("click", handleClickOutside)
-    } else {
-      document.removeEventListener("click", handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
+    open
+      ? document.addEventListener("click", handleClick)
+      : document.removeEventListener("click", handleClick)
+    return () => document.removeEventListener("click", handleClick)
   }, [open])
 
-  const toggleMenu = () => {
-    setOpen(!open)
-  }
+  const toggleMenu = () => setOpen(!open)
 
   return (
     <MobileHeader>
@@ -157,7 +112,31 @@ export default function Header() {
         <TitleLink to="/">Billy Bunn</TitleLink>
         <button onClick={() => toggleMenu()}>Menu</button>
       </HeaderTopBar>
-      <Nav open={open} />
+
+      <MobileNav style={{ display: open ? "flex" : "none" }} ref={navRef}>
+        <ul>
+          <li>
+            <NavLink to="/about" activeStyles={activeLinkStyles}>
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/work" activeStyles={activeLinkStyles}>
+              Work
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/blog" activeStyles={activeLinkStyles}>
+              Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact" activeStyles={activeLinkStyles}>
+              Contact
+            </NavLink>
+          </li>
+        </ul>
+      </MobileNav>
     </MobileHeader>
   )
 }
