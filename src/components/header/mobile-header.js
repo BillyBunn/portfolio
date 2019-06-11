@@ -1,62 +1,163 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 
 import TitleLink from "./title-link"
 import NavLink from "./nav-link"
 
-const MobileHeader = styled.header`
-  background: black;
-  background: ${props => props.theme.backgroundColor};
-  > nav {
-    ${"" /* background-color: grey; */}
-    height: 100%; /* 100% Full-height */
-    right: 0;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    ${"" /* padding-top: 60px;  */}
-    /* Place content 60px from the top */
-  position: fixed; /* Stay in place */
-    z-index: 1;
-    /* Stay on top */
-    top: 0; /* Stay at the top */
-    ${"" /* transition: 0.5s;  */}
-    /* 0.5 second transition effect to slide in the sidenav */
+const HeaderTopBar = styled.div`
+  align-items: center;
+  background: goldenrod;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 3em;
+  justify-content: space-between;
   width: 100%;
-    /* 0 width - change this with JavaScript */
+  position: fixed;
+  z-index: 998;
 
-    > span {
-      font-size: 36px;
-      right: 25px;
-      margin-left: 50px;
+  > h1 {
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-left: 1.5em;
+  }
+  > button {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    outline: 0;
+    padding: 0 1.5em 0 0;
+    text-transform: uppercase;
+    width: auto;
+  }
+`
+const MobileNav = styled.nav`
+  background-color: lightblue;
+  display: flex;
+  opacity: 1;
+  position: fixed;
+  width: 100%;
+  z-index: 997;
+  > ul {
+    margin-top: 3em;
+    padding: 1em 0;
+    display: inline-block;
+    width: 100%;
+    opacity: 1;
+    > li {
+      list-style: none;
+      margin: 0 0 0.5em;
+      padding: 0;
+      text-align: center;
+      &:last-child {
+        margin: 0;
+      }
+      > a {
+        display: block;
+        transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+        width: 100%;
+        text-decoration: none;
+        &:hover {
+          background: grey;
+          color: #fff;
+        }
+      }
     }
   }
 `
-export default () => {
+
+const MobileHeader = styled.header`
+  margin-bottom: 3em;
+
+  /* "Menu" button */
+  > span {
+    color: green;
+    float: right;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+`
+
+const activeLinkStyles = {
+  color: "pink",
+}
+
+function Nav({ open }) {
+  return (
+    <MobileNav style={{ display: open ? "flex" : "none" }}>
+      <ul>
+        <li>
+          <NavLink to="/about" activeStyles={activeLinkStyles}>
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/work" activeStyles={activeLinkStyles}>
+            Work
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/blog" activeStyles={activeLinkStyles}>
+            Blog
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact" activeStyles={activeLinkStyles}>
+            Contact
+          </NavLink>
+        </li>
+      </ul>
+    </MobileNav>
+  )
+}
+
+export default function Header() {
+  const node = React.createRef()
+  // const node = useRef();
+  console.log("NODE:", node)
   const [open, setOpen] = useState(false)
-  const toggleMenu = () => setOpen(!open)
+
+  const handleClickOutside = e => {
+    console.log("clicking anywhere")
+    console.log(e.target)
+    // if (node.current.contains(e.target)) {
+    //   // inside click
+    //   return
+    // }
+
+    // outside click
+    setOpen(false)
+  }
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener("click", handleClickOutside)
+    } else {
+      document.removeEventListener("click", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  }, [open])
+
+  const toggleMenu = () => {
+    setOpen(!open)
+  }
 
   return (
     <MobileHeader>
-      <nav>
-        <span onClick={() => toggleMenu()}>close</span>
-        <ul>
-          <li>
-            <TitleLink to="/">Home</TitleLink>
-          </li>
-          <li>
-            <NavLink to="/about">About</NavLink>
-          </li>
-          <li>
-            <NavLink to="/work">Work</NavLink>
-          </li>
-          <li>
-            <NavLink to="/blog">Blog</NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact">Contact</NavLink>
-          </li>
-        </ul>
-      </nav>
-      <span onClick={() => toggleMenu()}>open</span>
+      <HeaderTopBar>
+        <TitleLink to="/">Billy Bunn</TitleLink>
+        <button onClick={() => toggleMenu()}>Menu</button>
+      </HeaderTopBar>
+      <Nav open={open} />
     </MobileHeader>
   )
 }

@@ -37,7 +37,7 @@ const Layout = styled.div`
   }
 
   > header {
-    background: #d8d8d8;
+    ${'' /* background: #d8d8d8; */}
     flex: 0 0 auto;
   }
 
