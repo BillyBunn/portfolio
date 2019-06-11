@@ -8,5 +8,10 @@ const BREAKPOINT = 768
 
 export default () => {
   const { width } = useWindowDimensions()
-  return width > BREAKPOINT ? <DesktopHeader /> : <MobileHeader />
+  const routes = ["about", "work", "blog", "contact", "foo"]
+  return width > BREAKPOINT ? (
+    <DesktopHeader routes={routes} />
+  ) : (
+    <MobileHeader routes={routes} />
+  )
 }

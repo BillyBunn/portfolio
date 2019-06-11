@@ -44,14 +44,11 @@ export default () => (
     <Container>
       <h1>Billy Bunn</h1>
       <h2>
-        I develop excellent applications with modern technologies and tools.
+        I build exceptional applications with modern tools.
       </h2>
       <h3>
         I'm a Software Developer with a unique background in finance and an
-        insatiable drive to learn.
-      </h3>
-      <h3>
-        Learn more <Link to="/about">about me</Link>, see{" "}
+        insatiable drive to learn. Read more <Link to="/about">about me</Link>, see{" "}
         <Link to="/work">my work</Link>, or{" "}
         <Link to="/contact">get in touch.</Link>
       </h3>

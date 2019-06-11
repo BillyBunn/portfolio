@@ -2,20 +2,60 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 import TitleLink from "./title-link"
-import NavLink from "./nav-link"
+import NavList from "./nav-list"
 
-const DesktopHeader = styled.div`
+const DesktopHeader = styled.header`
+  align-items: center;
+  background: ${props => props.theme.headerBackground};
+  color: ${props => props.theme.headerColor};
+  display: flex;
+  flex-flow: row nowrap;
+  height: 3em;
+  justify-content: space-between;
+  width: 100%;
+
+  > h1 {
+    align-items: center;
+    display: flex;
+    font-size: 1.5em;
+    font-weight: 600;
+    height: 100%;
+    justify-content: center;
+    padding: 0 1.5em;
+  }
+
   > nav {
-    background-color: lightcoral;
-    > span {
-      display: none;
-    }
+    flex: 1;
+    height: 100%;
+    padding: 0 1.5em 0 0;
     > ul {
       align-items: center;
       display: flex;
+      height: 100%;
       justify-content: space-evenly;
       > li {
         display: inline;
+        flex: 1;
+        height: 100%;
+        text-align: center;
+        > a {
+          align-items: center;
+          display: flex;
+          flex: 0 1 auto;
+          height: 100%;
+          justify-content: center;
+          font-size: 1em;
+          ${"" /* height: 100%; */}
+          text-decoration: none;
+          text-transform: uppercase;
+          ${"" /* width: 100%; */}
+          transition: color 0s;
+          &:hover {
+            background: #f5f5f5;
+            color: #202020;
+            transition: color 0.3s ease-out;
+          }
+        }
       }
     }
   }
@@ -24,28 +64,16 @@ const DesktopHeader = styled.div`
   }
 `
 
-export default () => {
+const activeLinkStyles = {
+  background: "#f5f5f5",
+  color: "#202020",
+}
+
+export default ({ routes }) => {
   return (
     <DesktopHeader>
-      <nav>
-        <ul>
-          <li>
-            <TitleLink to="/">Home</TitleLink>
-          </li>
-          <li>
-            <NavLink to="/about">About</NavLink>
-          </li>
-          <li>
-            <NavLink to="/work">Work</NavLink>
-          </li>
-          <li>
-            <NavLink to="/blog">Blog</NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact">Contact</NavLink>
-          </li>
-        </ul>
-      </nav>
+      <TitleLink to="/">Billy Bunn</TitleLink>
+      <NavList routes={routes} activeStyle={activeLinkStyles} />
     </DesktopHeader>
   )
 }
