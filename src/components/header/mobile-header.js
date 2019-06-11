@@ -6,7 +6,9 @@ import NavLink from "./nav-link"
 
 const HeaderTopBar = styled.div`
   align-items: center;
-  background: goldenrod;
+  ${"" /* background: #202020;
+  color: #f5f5f5; */}
+  background: ${props => props.theme.headerBackground};
   display: flex;
   flex-flow: row nowrap;
   height: 3em;
@@ -26,6 +28,7 @@ const HeaderTopBar = styled.div`
     color: inherit;
     cursor: pointer;
     display: inline-block;
+    font-size: 0.9em;
     height: 100%;
     outline: 0;
     padding: 0 1.5em 0 0;
@@ -34,7 +37,9 @@ const HeaderTopBar = styled.div`
   }
 `
 const MobileNav = styled.nav`
-  background-color: lightblue;
+  ${"" /* background: #d8d8d8; */}
+  background: #d8d8d8;
+  color: #202020;
   display: flex;
   opacity: 1;
   position: fixed;
@@ -42,7 +47,7 @@ const MobileNav = styled.nav`
   z-index: 997;
   > ul {
     margin-top: 3em;
-    padding: 1em 0;
+    padding: 0.5em 0;
     display: inline-block;
     width: 100%;
     opacity: 1;
@@ -56,12 +61,15 @@ const MobileNav = styled.nav`
       }
       > a {
         display: block;
+        padding: 0.5em 1em;
         transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
         width: 100%;
         text-decoration: none;
         &:hover {
-          background: grey;
-          color: #fff;
+          ${"" /* background: #f5f5f5; */}
+          background: #202020;
+
+          color: #f5f5f5;
         }
       }
     }

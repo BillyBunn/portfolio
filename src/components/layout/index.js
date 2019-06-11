@@ -37,7 +37,8 @@ const Layout = styled.div`
   }
 
   > header {
-    ${'' /* background: #d8d8d8; */}
+    background: ${props => props.theme.headerBackground};
+    color: ${props => props.theme.headerColor};
     flex: 0 0 auto;
   }
 
@@ -46,7 +47,8 @@ const Layout = styled.div`
   }
 
   > footer {
-    background: ${props => props.theme.footerColor};
+    background: ${props => props.theme.headerBackground};
+    color: ${props => props.theme.headerColor};
     flex: 0 0 auto;
   }
 `
@@ -56,7 +58,7 @@ const Layout = styled.div`
 //   theme: {
 //     textColor: "red",
 //     backgroundColor: "lightblue",
-//     footerColor: "lightcoral",
+//     headerColor: "lightcoral",
 //   },
 // }
 
@@ -64,7 +66,8 @@ const Layout = styled.div`
 const theme = {
   textColor: "#202020",
   backgroundColor: "#f5f5f5",
-  footerColor: "#d8d8d8",
+  headerBackground: "#202020",
+  headerColor: "#d8d8d8",
 }
 
 export default ({ children }) => (
