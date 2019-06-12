@@ -27,6 +27,7 @@ const DesktopHeader = styled.header`
   > nav {
     flex: 1;
     height: 100%;
+    max-width: 1240px;
     padding: 0 1.5em 0 0;
     > ul {
       align-items: center;

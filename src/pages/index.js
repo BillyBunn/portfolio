@@ -43,12 +43,10 @@ export default () => (
   <Layout>
     <Container>
       <h1>Billy Bunn</h1>
-      <h2>
-        I build exceptional applications with modern tools.
-      </h2>
+      <h2>I use code to solve problems and serve people.</h2>
       <h3>
         I'm a Software Developer with a unique background in finance and an
-        insatiable drive to learn. Read more <Link to="/about">about me</Link>, see{" "}
+        appetite for learning. Read more <Link to="/about">about me</Link>, see{" "}
         <Link to="/work">my work</Link>, or{" "}
         <Link to="/contact">get in touch.</Link>
       </h3>
