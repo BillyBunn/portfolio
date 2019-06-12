@@ -2,38 +2,37 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import styled, { ThemeProvider } from "styled-components"
 
+// Context provider to give all components access to viewport height & width
 import WindowDimensionsProvider from "../WindowDimensionsProvider"
+
 import Header from "../header"
 import Footer from "../footer"
 
 const Layout = styled.div`
+  /* Makes content %100 height */
   display: flex;
   flex-flow: column nowrap;
-  height: 100%;
-  background: ${props => props.theme.backgroundColor};
-  color: ${props => props.theme.textColor};
-  ${"" /* font-family: Helvetica, Arial, sans-serif; */}
-  ${"" /* font-size: 1rem; */}
-  ${"" /* line-height: calc(1rem * 1.5); */}
-  line-height: 1.5;
+  flex-grow: 1;
 
+  background: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.primaryColor};
+  font-family: ${props => props.theme.fontFamily};
+  font-size: ${props => props.theme.baseFontSize};
+  font-weight: ${props => props.theme.baseFontWeight};
+  line-height: ${props => props.theme.baseLineHeight};
+  text-rendering: optimizeLegibility;
+
+  @media all and (min-width: 1440px) {
+    font-size: ${props => props.theme.maxFontSize};
+  }
+  @media all and (max-width: 768px) {
+    font-size: ${props => props.theme.mobileFontSize};
+  }
+
+  /* Keeps "visited" links from changing color */
   a,
   a:visited {
     color: inherit;
-  }
-
-  h1,
-  h2 {
-    ${"" /* font-size: 1.5rem; */}
-    ${"" /* line-height: calc(1.5rem * 1.5); */}
-  }
-
-  ${"" /* > header > *, */}
-  > main > div,
-  > footer > ul {
-    margin: 0px auto;
-    max-width: 960px;
-    width: 100%;
   }
 
   > header {
@@ -44,6 +43,23 @@ const Layout = styled.div`
 
   > main {
     flex: 1 0 auto;
+    padding: 2rem;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-size: ${props => props.theme.headingFontSize};
+      font-weight: ${props => props.theme.headingFontWeight};
+      letter-spacing: ${props => props.theme.headingLetterSpacing};
+      line-height: ${props => props.theme.baseLineHeight};
+      text-transform: ${props => props.theme.headingTextTransform};
+    }
+
+    p,
+    li {
+      margin-bottom: 1em;
+    }
   }
 
   > footer {
@@ -68,6 +84,27 @@ const theme = {
   backgroundColor: "#f5f5f5",
   headerBackground: "#202020",
   headerColor: "#d8d8d8",
+
+  primaryColor: "#202020" /* black */,
+  secondaryColor: "#f5f5f5" /* white */,
+  actionColor: "#2dd5c9" /* light blue */,
+
+  /* base text */
+  fontFamily: `"Fira Sans", sans-serif`,
+  // baseFontSize: "1rem",
+  baseFontSize: "2.4vw",
+  mobileFontSize: "1.13em",
+  maxFontSize: "2em",
+  baseLineHeight: "1.45",
+  baseFontWeight: "400",
+  boldFontWeight: "600",
+  /* titles */
+  titleFontSize: "125%",
+  /* headings */
+  headingFontSize: "109%",
+  headingFontWeight: "600",
+  headingLetterSpacing: "0.09em",
+  headingTextTransform: "uppercase",
 }
 
 export default ({ children }) => (

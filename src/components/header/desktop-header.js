@@ -6,8 +6,8 @@ import NavList from "./nav-list"
 
 const DesktopHeader = styled.header`
   align-items: center;
-  background: ${props => props.theme.headerBackground};
-  color: ${props => props.theme.headerColor};
+  ${'' /* background: ${props => props.theme.headerBackground}; */}
+  ${'' /* color: ${props => props.theme.headerColor}; */}
   display: flex;
   flex-flow: row nowrap;
   height: 3em;
@@ -18,7 +18,7 @@ const DesktopHeader = styled.header`
     align-items: center;
     display: flex;
     font-size: 1.5em;
-    font-weight: 600;
+    ${'' /* font-weight: 600; */}
     height: 100%;
     justify-content: center;
     padding: 0 1.5em;
@@ -45,7 +45,7 @@ const DesktopHeader = styled.header`
           flex: 0 1 auto;
           height: 100%;
           justify-content: center;
-          font-size: 1em;
+          ${'' /* font-size: 1em; */}
           ${"" /* height: 100%; */}
           text-decoration: none;
           text-transform: uppercase;
