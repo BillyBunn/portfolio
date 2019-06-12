@@ -6,7 +6,8 @@ import NavList from "./nav-list"
 
 const HeaderTopBar = styled.div`
   align-items: center;
-  ${'' /* background: ${props => props.theme.headerBackground}; */}
+  background: ${props => props.theme.primaryColor};
+  color: ${props => props.theme.secondaryColor};
   display: flex;
   flex-flow: row nowrap;
   height: 3em;
@@ -16,21 +17,26 @@ const HeaderTopBar = styled.div`
   z-index: 998;
 
   > h1 {
-    font-size: 1.5em;
-    font-weight: 600;
     padding-left: 1.5em;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: ${props => props.theme.actionColor};
+    }
   }
   > button {
+    /* resets button defaults, makes similar to desktop nav links */
     background: transparent;
     border: 0;
     color: inherit;
     cursor: pointer;
     display: inline-block;
-    font-size: 0.9em;
+    font: inherit;
     height: 100%;
     outline: 0;
     padding: 0 1.5em 0 0;
+    margin: 0;
     text-transform: uppercase;
+    vertical-align: baseline;
     width: auto;
   }
 `
@@ -38,10 +44,11 @@ const HeaderTopBar = styled.div`
 const Header = styled.header`
   margin-bottom: 3em;
   > nav {
-    ${'' /* background: #d8d8d8; */}
-    color: #202020;
+    ${'' /* background: ${props => props.theme.primaryColor}; */}
+    background: rgba (32,32,32);
+    color: ${props => props.theme.secondaryColor};
     display: flex;
-    opacity: 1;
+    ${'' /* opacity: 1; */}
     position: fixed;
     width: 100%;
     z-index: 997;
@@ -50,7 +57,7 @@ const Header = styled.header`
       padding: 0.5em 0;
       display: inline-block;
       width: 100%;
-      opacity: 1;
+      ${'' /* opacity: 1; */}
       > li {
         list-style: none;
         margin: 0 0 0.5em;
@@ -68,8 +75,8 @@ const Header = styled.header`
           width: 100%;
           text-decoration: none;
           &:hover {
-            background: #202020;
-            color: #f5f5f5;
+            background: ${props => props.theme.actionColor};
+            color: ${props => props.theme.primaryColor};
           }
         }
       }
@@ -113,7 +120,6 @@ export default ({ routes }) => {
         routes={routes}
         style={{ display: open ? "flex" : "none" }}
       />
-
     </Header>
   )
 }

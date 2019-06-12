@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 
 import TitleLink from "./title-link"
@@ -17,8 +17,6 @@ const DesktopHeader = styled.header`
   > h1 {
     align-items: center;
     display: flex;
-    font-size: 150%;
-    ${'' /* font-weight: 600; */}
     height: 100%;
     justify-content: center;
     padding: 0 1.5em;

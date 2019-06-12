@@ -28,6 +28,11 @@ const Layout = styled.div`
     color: inherit;
   }
 
+  h1 {
+    font-size: ${props => props.theme.titleFontSize};
+    font-weight: ${props => props.theme.boldFontWeight};
+  }
+
   > header {
     flex: 0 0 auto;
   }
@@ -62,10 +67,10 @@ const Layout = styled.div`
   /* min font-size at 768 width */
   @media all and (max-width: 768px) {
     font-size: ${props => props.theme.mobileFontSize};
+    /* start scaling content width */
     > main {
       max-width: none;
-      ${"" /* margin: 0 5vw; */}
-      /*  font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+      /*  width: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
       width: calc(304px + (614 - 304) * ((100vw - 320px) / (768 - 320)));
     }
   }
@@ -79,14 +84,14 @@ const Layout = styled.div`
   }
 `
 
-// We are passing a default theme for Layouts that arent wrapped in the ThemeProvider
-// Layout.defaultProps = {
-//   theme: {
-//     textColor: "red",
-//     backgroundColor: "lightblue",
-//     headerColor: "lightcoral",
-//   },
-// }
+// Default theme for Layouts that aren't wrapped in the ThemeProvider
+/* Layout.defaultProps = {
+  theme: {
+    textColor: "red",
+    backgroundColor: "lightblue",
+    headerColor: "lightcoral",
+  },
+} */
 
 // Define what props.theme will look like
 const theme = {
@@ -109,7 +114,7 @@ const theme = {
   baseFontWeight: "400",
   boldFontWeight: "600",
   /* titles */
-  titleFontSize: "125%",
+  titleFontSize: "150%",
   /* headings */
   headingFontSize: "109%",
   headingFontWeight: "600",
@@ -131,6 +136,7 @@ export default ({ children }) => (
         <Header />
         <main>{children}</main>
         <Footer />
+
       </Layout>
     </ThemeProvider>
   </WindowDimensionsProvider>
