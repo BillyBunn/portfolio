@@ -22,13 +22,6 @@ const Layout = styled.div`
   line-height: ${props => props.theme.baseLineHeight};
   text-rendering: optimizeLegibility;
 
-  @media all and (min-width: 1440px) {
-    font-size: ${props => props.theme.maxFontSize};
-  }
-  @media all and (max-width: 768px) {
-    font-size: ${props => props.theme.mobileFontSize};
-  }
-
   /* Keeps "visited" links from changing color */
   a,
   a:visited {
@@ -36,14 +29,14 @@ const Layout = styled.div`
   }
 
   > header {
-    background: ${props => props.theme.headerBackground};
-    color: ${props => props.theme.headerColor};
     flex: 0 0 auto;
   }
 
   > main {
     flex: 1 0 auto;
-    padding: 2rem;
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 2rem 0;
     h1,
     h2,
     h3,
@@ -63,9 +56,26 @@ const Layout = styled.div`
   }
 
   > footer {
-    background: ${props => props.theme.headerBackground};
-    color: ${props => props.theme.headerColor};
     flex: 0 0 auto;
+  }
+
+  /* min font-size at 768 width */
+  @media all and (max-width: 768px) {
+    font-size: ${props => props.theme.mobileFontSize};
+    > main {
+      max-width: none;
+      ${"" /* margin: 0 5vw; */}
+      /*  font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+      width: calc(304px + (614 - 304) * ((100vw - 320px) / (768 - 320)));
+    }
+  }
+
+  /* max font-size at 1440 width */
+  @media all and (min-width: 1024px) {
+    font-size: ${props => props.theme.maxFontSize};
+    > main {
+      max-width: calc(1024px * 0.8);
+    }
   }
 `
 
@@ -92,9 +102,9 @@ const theme = {
   /* base text */
   fontFamily: `"Fira Sans", sans-serif`,
   // baseFontSize: "1rem",
-  baseFontSize: "2.4vw",
+  baseFontSize: "2.03vw",
   mobileFontSize: "1.13em",
-  maxFontSize: "2em",
+  maxFontSize: "1.3em",
   baseLineHeight: "1.45",
   baseFontWeight: "400",
   boldFontWeight: "600",

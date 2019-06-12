@@ -6,7 +6,7 @@ import NavList from "./nav-list"
 
 const HeaderTopBar = styled.div`
   align-items: center;
-  background: ${props => props.theme.headerBackground};
+  ${'' /* background: ${props => props.theme.headerBackground}; */}
   display: flex;
   flex-flow: row nowrap;
   height: 3em;
@@ -38,7 +38,7 @@ const HeaderTopBar = styled.div`
 const Header = styled.header`
   margin-bottom: 3em;
   > nav {
-    background: #d8d8d8;
+    ${'' /* background: #d8d8d8; */}
     color: #202020;
     display: flex;
     opacity: 1;

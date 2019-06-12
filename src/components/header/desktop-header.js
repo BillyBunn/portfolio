@@ -6,8 +6,8 @@ import NavList from "./nav-list"
 
 const DesktopHeader = styled.header`
   align-items: center;
-  ${'' /* background: ${props => props.theme.headerBackground}; */}
-  ${'' /* color: ${props => props.theme.headerColor}; */}
+  background: ${props => props.theme.primaryColor};
+  color: ${props => props.theme.secondaryColor};
   display: flex;
   flex-flow: row nowrap;
   height: 3em;
@@ -17,7 +17,7 @@ const DesktopHeader = styled.header`
   > h1 {
     align-items: center;
     display: flex;
-    font-size: 1.5em;
+    font-size: 150%;
     ${'' /* font-weight: 600; */}
     height: 100%;
     justify-content: center;
