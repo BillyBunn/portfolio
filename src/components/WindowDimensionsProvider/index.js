@@ -1,26 +1,32 @@
 // https://hackernoon.com/simplifying-responsive-layouts-with-react-hooks-19db73893a7a
+// NOTE: "window" is a browser global and not defined at build
+
 import React, { createContext, useContext, useState, useEffect } from "react"
 
 const WindowDimensionsCtx = createContext(null)
 
 const WindowDimensionsProvider = ({ children }) => {
+  if (typeof window !== "undefined") {
+  }
   const [dimensions, setDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
   })
 
   useEffect(() => {
     const handleResize = () => {
       setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: typeof window !== "undefined" ? window.innerWidth : 0,
+        height: typeof window !== "undefined" ? window.innerHeight : 0,
       })
     }
 
-    window.addEventListener("resize", handleResize)
-    
+    if (typeof window !== "undefined")
+      window.addEventListener("resize", handleResize)
+
     return () => {
-      window.removeEventListener("resize", handleResize)
+      if (typeof window !== "undefined")
+        window.removeEventListener("resize", handleResize)
     }
   }, [])
 
