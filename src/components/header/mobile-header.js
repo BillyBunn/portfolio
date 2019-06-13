@@ -77,7 +77,7 @@ const Header = styled.header`
           }
           &:hover {
             background: ${props => props.theme.actionColor};
-            color: ${props => props.theme.primaryColor};
+            color: ${props => props.theme.primaryColor} !important;
           }
         }
       }

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
 import Layout from "../components/layout"
 
@@ -26,7 +27,7 @@ export default () => (
     <p>
       I have experience making full-stack applications with several modern tools
       and libraries. I've built things with React, Node, Express, MongoDB, and
-      more. See my full <a href="#resume">resume below</a>.
+      more. You can see some of my work <Link to="/work">here</Link>.
     </p>
     <hr />
     <h3>Background</h3>
