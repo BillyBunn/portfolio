@@ -1,5 +1,17 @@
 import React from "react"
+import styled from "styled-components"
 import Layout from "../components/layout"
+
+const Line = styled.hr`
+  border: 0;
+  height: 2px;
+  background: #333;
+  background-image: linear-gradient(
+    to right,
+    ${props => props.theme.actionColor},
+    ${props => props.theme.secondaryColor}
+  );
+`
 
 export default () => (
   <Layout>
@@ -16,7 +28,7 @@ export default () => (
       and libraries. I've built things with React, Node, Express, MongoDB, and
       more. See my full <a href="#resume">resume below</a>.
     </p>
-
+    <hr />
     <h3>Background</h3>
     <p>
       Right out of high school, I moved from my small town in Northern
@@ -35,7 +47,7 @@ export default () => (
       users/customers, but I realized that my coding hobby was more suited for
       my passions—building solutions to people's problems and constant learning.
     </p>
-
+    <hr />
     <h3>Finance to Software</h3>
     <p>
       In late 2018, I took a leap and left the finance world to study coding and
@@ -51,7 +63,7 @@ export default () => (
       working as a private tutor. I teach students one-on-one in the basics of
       programming and more advanced features of JavaScript.
     </p>
-
+    <hr />
     <h3>Available for Hire</h3>
     <p>
       I'm currently seeking a full-time software development role with a team in

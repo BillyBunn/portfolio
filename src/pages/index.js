@@ -1,8 +1,10 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import styled from "styled-components"
 import Layout from "../components/layout"
+// import Image from "../components/image"
 
 const IndexLayout = styled(Layout)`
   > main {
@@ -11,19 +13,29 @@ const IndexLayout = styled(Layout)`
     justify-content: center;
     margin-bottom: 20vw;
     > h1 {
-      font-size: calc(2.5em + (6 - 2.5) * ((100vw - 320px) / (1024 - 320)));
+      font-size: calc(2.7em + (6 - 2.7) * ((100vw - 320px) / (1024 - 320)));
+      text-transform: none;
+      > span {
+        color: #2dd5c9;
+        font-size: 110%;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
     }
   }
 `
 
-const Header = styled.h1`
-  ${"" /* background: turquoise; */}
-  font-size: 30vw;
-`
-export default () => {
+export default ({ data }) => {
+  console.log("DATA:", data)
   return (
     <IndexLayout>
-      <h1>Hello, I'm Billy Bunn</h1>
+      {/* <Img fixed={data.file.childImageSharp.fixed} /> */}
+      {/* <Image /> */}
+      <Img fixed={data.file.childImageSharp.fluid} />
+
+      <h1>
+        Hello, I'm <span>Billy Bunn</span>
+      </h1>
       <p>
         I'm a Software Developer who left a career in finance to pursue my
         passion for code.
@@ -40,3 +52,15 @@ export default () => {
     </IndexLayout>
   )
 }
+
+export const query = graphql`
+  query {
+    file(relativePath: { eq: "images/headshot-bw.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
