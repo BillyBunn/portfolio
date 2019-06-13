@@ -29,18 +29,18 @@ const IndexLayout = styled(Layout)`
 `
 
 const WaveContainer = styled.div`
-  ${'' /* z-index: -999; */}
+  ${"" /* z-index: -999; */}
   display: flex;
   flex-flow: row nowrap;
+  ${"" /* position: absolute; */}
+  width: 100%;
   > * {
     flex: 1;
     height: auto;
   }
-
 `
 
 const CircleSvg = styled.svg`
-  border: 2px dashed goldenrod;
   animation-name: wave;
   animation-duration: 3s;
   animation-iteration-count: infinite;
@@ -48,25 +48,22 @@ const CircleSvg = styled.svg`
 
   @keyframes wave {
     0% {
-      fill: red;
       ${"" /* transform:translateY(20px); */}
     }
     50% {
-      circle {fill: blue;}
       transform: translateY(100px);
     }
     100% {
-      fill: red;
       transform: translateY(0px);
     }
   }
 `
 
 const Circle = styled.circle`
-    fill: red;
-    stroke: black;
-    stroke-width: 1;
-    transform-origin: 50% 50%;
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
+  transform-origin: 50% 50%;
 `
 
 const SvgCircle = () => (
@@ -83,13 +80,13 @@ export default () => (
   <IndexLayout>
     <WaveContainer>
       {/* <Wave> */}
-        {(function() {
-          let circles = []
-          for (let i = 0; i < 5; i++) {
-            circles.push(<SvgCircle key={i} />)
-          }
-          return circles
-        })()}
+      {(function() {
+        let circles = []
+        for (let i = 0; i < 5; i++) {
+          circles.push(<SvgCircle key={i} />)
+        }
+        return circles
+      })()}
       {/* </Wave> */}
     </WaveContainer>
     {/* <div>
