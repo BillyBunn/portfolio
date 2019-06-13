@@ -5,14 +5,11 @@ import styled from "styled-components"
 const TitleLink = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
-  &:hover {
-    ${'' /* border-bottom: 2px solid #202020; */}
-  }
 `
 
 export default ({ to, children }) => (
   <h1>
-    <TitleLink to={to}>
+    <TitleLink to={to} activeStyle={{ color: `#2dd5c9` }}>
       {children}
     </TitleLink>
   </h1>

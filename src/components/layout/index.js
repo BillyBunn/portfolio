@@ -42,6 +42,7 @@ const Layout = styled.div`
     max-width: 80vw;
     margin: 0 auto;
     padding: 2rem 0;
+    width: 100%;
     h1,
     h2,
     h3,
