@@ -29,6 +29,6 @@ export default () => (
         <a href="https://twitter.com/billybunn">Twitter</a>
       </li>
     </ul>
-    <p>Copyright © 2019 Billy Bunn</p>
+    {/* <p>Copyright © 2019 Billy Bunn</p> */}
   </Footer>
 )

@@ -8,8 +8,18 @@
 }
 
 html,
-body,
-#___gatsby,
-#___gatsby > div {
+body {
   height: 100%;
+}
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#___gatsby,
+div[role="group"][tabindex] {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

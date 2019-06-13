@@ -1,59 +1,17 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useWindowDimensions } from "../WindowDimensionsProvider"
 
-import styled from "styled-components"
+import MobileHeader from "./mobile-header"
+import DesktopHeader from "./desktop-header"
 
-import TitleLink from "./title-link"
-import NavLink from "./nav-link"
-
-const Header = styled.header`
-  > nav {
-    > ul {
-      align-items: center;
-      display: flex;
-      justify-content: space-evenly;
-      > li {
-        ${"" /* background: pink; */}
-        ${"" /* height: 100%; */}
-        display: inline;
-      }
-    }
-  }
-`
+const BREAKPOINT = 768
 
 export default () => {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
-  return (
-    <Header>
-      <nav>
-        <ul>
-          <li>
-            <TitleLink to="/">{data.site.siteMetadata.title}</TitleLink>
-          </li>
-          <li>
-            <NavLink to="/about">About</NavLink>
-          </li>
-          <li>
-            <NavLink to="/work">Work</NavLink>
-          </li>
-          <li>
-            <NavLink to="/blog">Blog</NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact">Contact</NavLink>
-          </li>
-        </ul>
-      </nav>
-    </Header>
+  const { width } = useWindowDimensions()
+  const routes = ["about", "work", "blog", "contact", "foo"]
+  return width > BREAKPOINT ? (
+    <DesktopHeader routes={routes} />
+  ) : (
+    <MobileHeader routes={routes} />
   )
 }

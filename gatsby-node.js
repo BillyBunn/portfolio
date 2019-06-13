@@ -56,15 +56,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      // console.log("NODE SLUG:", node.fields.slug)
-      // console.log(
-      //   path
-      //     .dirname(node.fields.slug)
-      //     .split(path.sep)
-      //     .pop(),
-      //   "\n"
-      // )
-
+    
       // Gets parent directory name
       let parent = path
         .dirname(node.fields.slug)

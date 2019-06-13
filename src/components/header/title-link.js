@@ -2,9 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-const NavLink = styled(Link)`
-  font-weight: bold;
+const TitleLink = styled(Link)`
   text-decoration: none;
+  text-transform: uppercase;
   &:hover {
     ${'' /* border-bottom: 2px solid #202020; */}
   }
@@ -12,6 +12,8 @@ const NavLink = styled(Link)`
 
 export default ({ to, children }) => (
   <h1>
-    <NavLink to={to}>{children}</NavLink>
+    <TitleLink to={to}>
+      {children}
+    </TitleLink>
   </h1>
 )
