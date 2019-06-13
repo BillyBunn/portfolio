@@ -28,37 +28,70 @@ const IndexLayout = styled(Layout)`
   }
 `
 
-const Wave = styled.div`
+const WaveContainer = styled.div`
+  ${'' /* z-index: -999; */}
   display: flex;
   flex-flow: row nowrap;
   > * {
     flex: 1;
+    height: auto;
+  }
+
+`
+
+const CircleSvg = styled.svg`
+  border: 2px dashed goldenrod;
+  animation-name: wave;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+
+  @keyframes wave {
+    0% {
+      fill: red;
+      ${"" /* transform:translateY(20px); */}
+    }
+    50% {
+      circle {fill: blue;}
+      transform: translateY(100px);
+    }
+    100% {
+      fill: red;
+      transform: translateY(0px);
+    }
   }
 `
 
-const Circle = styled.svg`
-  > circle {
+const Circle = styled.circle`
     fill: red;
     stroke: black;
-  }
+    stroke-width: 1;
+    transform-origin: 50% 50%;
 `
+
 const SvgCircle = () => (
-  <Circle viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="49" stroke-width="1" />
-  </Circle>
+  <CircleSvg
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid meet"
+    // preserveAspectRatio="none"
+  >
+    <Circle cx="50" cy="50" r="49" />
+  </CircleSvg>
 )
 
 export default () => (
   <IndexLayout>
-    <Wave>
-      {(function() {
-        let circles = []
-        for (let i = 0; i < 5; i++) {
-          circles.push(<SvgCircle key={i} />)
-        }
-        return circles
-      })()}
-    </Wave>
+    <WaveContainer>
+      {/* <Wave> */}
+        {(function() {
+          let circles = []
+          for (let i = 0; i < 5; i++) {
+            circles.push(<SvgCircle key={i} />)
+          }
+          return circles
+        })()}
+      {/* </Wave> */}
+    </WaveContainer>
     {/* <div>
       <h1>Billy Bunn</h1>
     </div> */}
