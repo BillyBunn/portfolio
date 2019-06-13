@@ -53,7 +53,7 @@ export default () => (
     <Wave>
       {(function() {
         let circles = []
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 5; i++) {
           circles.push(<SvgCircle key={i} />)
         }
         return circles
