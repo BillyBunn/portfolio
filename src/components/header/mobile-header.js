@@ -12,9 +12,9 @@ const HeaderTopBar = styled.div`
   flex-flow: row nowrap;
   height: 3em;
   justify-content: space-between;
-  width: 100%;
   position: fixed;
-  z-index: 998;
+  width: 100%;
+  z-index: 998; /* above nav */
 
   > h1 {
     padding-left: 1.5em;
@@ -32,9 +32,9 @@ const HeaderTopBar = styled.div`
     display: inline-block;
     font: inherit;
     height: 100%;
+    margin: 0;
     outline: 0;
     padding: 0 1.5em 0 0;
-    margin: 0;
     text-transform: uppercase;
     vertical-align: baseline;
     width: auto;
@@ -42,22 +42,20 @@ const HeaderTopBar = styled.div`
 `
 
 const Header = styled.header`
-  margin-bottom: 3em;
+  margin-bottom: 3em; /* equal to height of top bar */
   > nav {
-    ${'' /* background: ${props => props.theme.primaryColor}; */}
-    background: rgba (32,32,32);
+    background-color: rgba(32, 32, 32, 0.9);
     color: ${props => props.theme.secondaryColor};
     display: flex;
-    ${'' /* opacity: 1; */}
     position: fixed;
     width: 100%;
-    z-index: 997;
+    z-index: 997; /* behind header top bar */
     > ul {
+      display: inline-block;
       margin-top: 3em;
       padding: 0.5em 0;
-      display: inline-block;
       width: 100%;
-      ${'' /* opacity: 1; */}
+
       > li {
         list-style: none;
         margin: 0 0 0.5em;
@@ -68,12 +66,15 @@ const Header = styled.header`
         }
         > a {
           display: block;
+          opacity: 1;
           padding: 0.5em 1em;
           text-decoration: none;
           text-transform: uppercase;
           transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
           width: 100%;
-          text-decoration: none;
+          &.active-link {
+            background-color: rgba(45, 213, 201, 0.65);
+          }
           &:hover {
             background: ${props => props.theme.actionColor};
             color: ${props => props.theme.primaryColor};
@@ -85,8 +86,9 @@ const Header = styled.header`
 `
 
 const activeLinkStyles = {
-  background: "#202020",
-  color: "#f5f5f5",
+  // background: "#2dd5c9",
+  // backgroundColor: "rgba(45, 213, 201, 0.9)",
+  // color: "#2dd5c9",
 }
 
 export default ({ routes }) => {

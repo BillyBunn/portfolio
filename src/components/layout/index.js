@@ -9,7 +9,7 @@ import Header from "../header"
 import Footer from "../footer"
 
 const Layout = styled.div`
-  /* Makes content %100 height */
+  /* Makes content 100% height */
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
@@ -122,10 +122,10 @@ const theme = {
   headingTextTransform: "uppercase",
 }
 
-export default ({ children }) => (
+export default ({ children, ...other }) => (
   <WindowDimensionsProvider>
     <ThemeProvider theme={theme}>
-      <Layout>
+      <Layout {...other}>
         <Helmet>
           <link
             href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,600,600i,900&display=swap"

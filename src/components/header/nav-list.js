@@ -4,9 +4,14 @@ import { Link } from "gatsby"
 const NavLink = ({
   to,
   children,
-  activeStyle = { textDecoration: "underline" },
+  activeStyle,
 }) => (
-  <Link to={to} activeStyle={activeStyle} partiallyActive={true}>
+  <Link
+    to={to}
+    activeStyle={activeStyle}
+    activeClassName="active-link"
+    partiallyActive={true}
+  >
     {children}
   </Link>
 )

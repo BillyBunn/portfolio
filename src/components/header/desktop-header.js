@@ -13,13 +13,16 @@ const DesktopHeader = styled.header`
   height: 3em;
   justify-content: space-between;
   width: 100%;
-
   > h1 {
     align-items: center;
     display: flex;
     height: 100%;
     justify-content: center;
     padding: 0 1.5em;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: ${props => props.theme.actionColor};
+    }
   }
 
   > nav {
@@ -43,15 +46,12 @@ const DesktopHeader = styled.header`
           flex: 0 1 auto;
           height: 100%;
           justify-content: center;
-          ${'' /* font-size: 1em; */}
-          ${"" /* height: 100%; */}
           text-decoration: none;
           text-transform: uppercase;
-          ${"" /* width: 100%; */}
           transition: color 0s;
           &:hover {
-            background: #f5f5f5;
-            color: #202020;
+            background: ${props => props.theme.secondaryColor};
+            color: ${props => props.theme.primaryColor};
             transition: color 0.3s ease-out;
           }
         }
