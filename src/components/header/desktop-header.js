@@ -52,6 +52,7 @@ const DesktopHeader = styled.header`
           &:hover {
             background: ${props => props.theme.secondaryColor};
             color: ${props => props.theme.primaryColor};
+            font-weight: 600;
             transition: color 0.3s ease-out;
           }
         }
@@ -65,7 +66,8 @@ const DesktopHeader = styled.header`
 
 const activeLinkStyles = {
   background: "#f5f5f5",
-  color: "#202020",
+  color: "#2dd5c9",
+  fontWeight: 600,
 }
 
 export default ({ routes }) => {

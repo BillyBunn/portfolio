@@ -26,6 +26,11 @@ const Layout = styled.div`
   a,
   a:visited {
     color: inherit;
+    text-decoration-color: ${props => props.theme.actionColor};
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: ${props => props.theme.actionColor};
+    }
   }
 
   h1 {
@@ -42,6 +47,7 @@ const Layout = styled.div`
     max-width: 80vw;
     margin: 0 auto;
     padding: 2rem 0;
+    width: 100%;
     h1,
     h2,
     h3,
@@ -58,6 +64,17 @@ const Layout = styled.div`
     li {
       margin-bottom: 1em;
     }
+  }
+
+  hr {
+    border: 0;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(
+      to right,
+      ${props => props.theme.actionColor},
+      ${props => props.theme.secondaryColor}
+    );
   }
 
   > footer {
@@ -136,7 +153,6 @@ export default ({ children, ...other }) => (
         <Header />
         <main>{children}</main>
         <Footer />
-
       </Layout>
     </ThemeProvider>
   </WindowDimensionsProvider>
