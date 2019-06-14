@@ -54,7 +54,7 @@ const IndexLayout = styled(Layout)`
 `
 
 export default props => {
-  console.log("DATA:", props.data)
+  // console.log("DATA:", props.data)
   return (
     <IndexLayout>
       <div>
