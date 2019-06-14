@@ -100,10 +100,15 @@ export default ({ routes }) => {
     setOpen(false) // outside click
   }
 
-  const addClickListen = () => document.addEventListener("click", handleClick)
+  const addClickListen = () => {
+    console.log("added click listen")
+    document.addEventListener("click", handleClick)
+  }
 
-  const removeClickListen = () =>
+  const removeClickListen = () => {
+    console.log("removed click listen")
     document.removeEventListener("click", handleClick)
+  }
 
   useEffect(() => {
     open ? addClickListen() : removeClickListen()
