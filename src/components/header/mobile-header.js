@@ -100,11 +100,12 @@ export default ({ routes }) => {
     setOpen(false) // outside click
   }
 
+  const addClickListen = document.addEventListener("click", handleClick)
+  const removeClickListen = document.removeEventListener("click", handleClick)
+
   useEffect(() => {
-    open
-      ? document.addEventListener("click", handleClick)
-      : document.removeEventListener("click", handleClick)
-    return () => document.removeEventListener("click", handleClick)
+    open ? addClickListen : removeClickListen
+    return () => removeClickListen
   }, [open])
 
   const toggleMenu = () => setOpen(!open)

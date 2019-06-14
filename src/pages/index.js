@@ -53,8 +53,6 @@ const IndexLayout = styled(Layout)`
   }
 `
 
-const TitleCard = styled.div``
-
 export default props => {
   console.log("DATA:", props.data)
   return (
