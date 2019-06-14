@@ -53,8 +53,6 @@ const IndexLayout = styled(Layout)`
   }
 `
 
-const TitleCard = styled.div``
-
 export default props => {
   console.log("DATA:", props.data)
   return (
@@ -84,7 +82,7 @@ export default props => {
 
 export const pageQuery = graphql`
   query {
-    imageOne: file(relativePath: { eq: "images/headshot-bw.jpeg" }) {
+    imageOne: file(relativePath: { eq: "headshot-bw.jpeg" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
