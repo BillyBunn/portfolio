@@ -9,33 +9,51 @@ import Header from "../header"
 import Footer from "../footer"
 
 const Layout = styled.div`
+  --primary-color: #202020; /* black */
+  --secondary-color: #f5f5f5; /* white */
+  --action-color: #2dd5c9; /* light blue */
+  --font-family: "Fira Sans", sans-serif;
+  --base-font-size: 2.03vw;
+  --mobile-font-size: 1.13em;
+  --max-font-size: 1.3em;
+  --base-line-height: 1.45;
+  --base-font-weight: 400;
+  --bold-font-weight: 600;
+  /* titles */
+  --title-font-size: 150%;
+  /* headings */
+  --heading-font-size: 109%;
+  --heading-font-weight: 600;
+  --heading-letter-spacing: 0.09em;
+  --heading-text-transform: uppercase;
+
   /* Makes content 100% height */
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
 
-  background: ${props => props.theme.secondaryColor};
-  color: ${props => props.theme.primaryColor};
-  font-family: ${props => props.theme.fontFamily};
-  font-size: ${props => props.theme.baseFontSize};
-  font-weight: ${props => props.theme.baseFontWeight};
-  line-height: ${props => props.theme.baseLineHeight};
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  font-weight: var(--base-font-weight);
+  line-height: var(--base-line-height);
   text-rendering: optimizeLegibility;
 
   /* Keeps "visited" links from changing color */
   a,
   a:visited {
     color: inherit;
-    text-decoration-color: ${props => props.theme.actionColor};
+    text-decoration-color: var(--action-color);
     transition: color 0.2s ease-in-out;
     &:hover {
-      color: ${props => props.theme.actionColor};
+      color: var(--action-color);
     }
   }
 
   h1 {
-    font-size: ${props => props.theme.titleFontSize};
-    font-weight: ${props => props.theme.boldFontWeight};
+    font-size: var(--title-font-size);
+    font-weight: var(--bold-font-weight);
   }
 
   > header {
@@ -53,11 +71,15 @@ const Layout = styled.div`
     h3,
     h4,
     h5 {
-      font-size: ${props => props.theme.headingFontSize};
-      font-weight: ${props => props.theme.headingFontWeight};
-      letter-spacing: ${props => props.theme.headingLetterSpacing};
-      line-height: ${props => props.theme.baseLineHeight};
-      text-transform: ${props => props.theme.headingTextTransform};
+      --heading-font-size: 109%;
+      --heading-font-weight: 600;
+      --heading-letter-spacing: 0.09em;
+      --heading-text-transform: uppercase;
+      font-size: var(--heading-font-size);
+      font-weight: var(--heading-font-weight);
+      letter-spacing: var(--heading-letter-spacing);
+      line-height: var(--base-line-height);
+      text-transform: var(--heading-text-transform);
     }
 
     p,
@@ -72,8 +94,8 @@ const Layout = styled.div`
     background: #333;
     background-image: linear-gradient(
       to right,
-      ${props => props.theme.actionColor},
-      ${props => props.theme.secondaryColor}
+      var(--action-color),
+      var(--secondary-color)
     );
   }
 
@@ -83,7 +105,7 @@ const Layout = styled.div`
 
   /* min font-size at 768 width */
   @media all and (max-width: 768px) {
-    font-size: ${props => props.theme.mobileFontSize};
+    font-size: var(--mobile-font-size);
     /* start scaling content width */
     > main {
       max-width: none;
@@ -94,54 +116,15 @@ const Layout = styled.div`
 
   /* max font-size at 1440 width */
   @media all and (min-width: 1024px) {
-    font-size: ${props => props.theme.maxFontSize};
+    font-size: var(--max-font-size);
     > main {
       max-width: calc(1024px * 0.8);
     }
   }
 `
 
-// Default theme for Layouts that aren't wrapped in the ThemeProvider
-/* Layout.defaultProps = {
-  theme: {
-    textColor: "red",
-    backgroundColor: "lightblue",
-    headerColor: "lightcoral",
-  },
-} */
-
-// Define what props.theme will look like
-const theme = {
-  textColor: "#202020",
-  backgroundColor: "#f5f5f5",
-  headerBackground: "#202020",
-  headerColor: "#d8d8d8",
-
-  primaryColor: "#202020" /* black */,
-  secondaryColor: "#f5f5f5" /* white */,
-  actionColor: "#2dd5c9" /* light blue */,
-
-  /* base text */
-  fontFamily: `"Fira Sans", sans-serif`,
-  // baseFontSize: "1rem",
-  baseFontSize: "2.03vw",
-  mobileFontSize: "1.13em",
-  maxFontSize: "1.3em",
-  baseLineHeight: "1.45",
-  baseFontWeight: "400",
-  boldFontWeight: "600",
-  /* titles */
-  titleFontSize: "150%",
-  /* headings */
-  headingFontSize: "109%",
-  headingFontWeight: "600",
-  headingLetterSpacing: "0.09em",
-  headingTextTransform: "uppercase",
-}
-
 export default ({ children, ...other }) => (
   <WindowDimensionsProvider>
-    <ThemeProvider theme={theme}>
       <Layout {...other}>
         <Helmet>
           <link
@@ -154,6 +137,5 @@ export default ({ children, ...other }) => (
         <main>{children}</main>
         <Footer />
       </Layout>
-    </ThemeProvider>
   </WindowDimensionsProvider>
 )

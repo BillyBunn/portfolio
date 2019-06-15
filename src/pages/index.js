@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import styled from "styled-components"
-import Layout from "../components/layout"
+import Layout from "components/layout"
 // import Image from "../components/image"
 
 const IndexLayout = styled(Layout)`
@@ -58,7 +58,7 @@ export default props => {
   return (
     <IndexLayout>
       <div>
-        <Img fluid={props.data.imageOne.childImageSharp.fluid} />
+        {/* <Img fluid={props.data.imageOne.childImageSharp.fluid} /> */}
         <h1>
           Hello, I'm <span>Billy Bunn</span>
         </h1>

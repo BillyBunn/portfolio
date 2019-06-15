@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const path = require("path")
+
 module.exports = {
   // Metadata ----------------------------------------
   siteMetadata: {
@@ -14,6 +16,14 @@ module.exports = {
 
   // Plugins ----------------------------------------
   plugins: [
+    // // to
+    // {
+    //   resolve: "gatsby-plugin-root-import",
+    //   options: {
+    //     src: path.join(__dirname, "src"),
+    //     components: path.join(__dirname, "src/components"),
+    //   },
+    // },
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,

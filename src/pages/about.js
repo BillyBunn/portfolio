@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import Layout from "../components/layout"
+import Layout from "components/layout"
 
 const Line = styled.hr`
   border: 0;
@@ -9,8 +9,8 @@ const Line = styled.hr`
   background: #333;
   background-image: linear-gradient(
     to right,
-    ${props => props.theme.actionColor},
-    ${props => props.theme.secondaryColor}
+    var(--action-color),
+    var(--secondary-color)
   );
 `
 

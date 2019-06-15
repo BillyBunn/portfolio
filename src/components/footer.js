@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 const Footer = styled.footer`
-  background: ${props => props.theme.primaryColor};
+  background: var(--primary-color);
   display: flex;
   flex-flow: column nowrap;
   > ul {
@@ -10,19 +10,19 @@ const Footer = styled.footer`
     padding: 1rem 0 1rem 0;
     justify-content: space-evenly;
     > li {
-      color: ${props => props.theme.secondaryColor};
+      color: var(--secondary-color);
       display: inline;
       > a {
         text-decoration: none;
         transition: color 0.2s ease-in-out;
         &:hover {
-          color: ${props => props.theme.actionColor};
+          color: var(--action-color);
         }
       }
     }
   }
   > p {
-    color: ${props => props.theme.secondaryColor};
+    color: var(--secondary-color);
     font-size: 80%;
     margin-bottom: 0.2rem;
     text-align: center;

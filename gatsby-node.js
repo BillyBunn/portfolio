@@ -3,6 +3,25 @@ const path = require(`path`)
 // Helper function from gatsby-source-filesystem
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
+
+exports.onCreateWebpackConfig = ({
+  stage,
+  getConfig,
+  rules,
+  loaders,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      plugins: [new DirectoryNamedWebpackPlugin({
+        exclude: /node_modules/
+      })],
+    },
+  });
+};
+
 // Function called by Gatsby whenever a new node is created (or updated)
 // https://www.gatsbyjs.org/docs/node-apis/#onCreateNode
 exports.onCreateNode = ({ node, getNode, actions }) => {

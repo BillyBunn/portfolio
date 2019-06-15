@@ -6,8 +6,8 @@ import NavList from "./nav-list"
 
 const HeaderTopBar = styled.div`
   align-items: center;
-  background: ${props => props.theme.primaryColor};
-  color: ${props => props.theme.secondaryColor};
+  background: var(--primary-color);
+  color: var(--secondary-color);
   display: flex;
   flex-flow: row nowrap;
   height: 3em;
@@ -20,7 +20,7 @@ const HeaderTopBar = styled.div`
     padding-left: 1.5em;
     transition: color 0.2s ease-in-out;
     &:hover {
-      color: ${props => props.theme.actionColor};
+      color: var(--action-color);
     }
   }
   > button {
@@ -45,7 +45,7 @@ const Header = styled.header`
   margin-bottom: 3em; /* equal to height of top bar */
   > nav {
     background-color: rgba(32, 32, 32, 0.9);
-    color: ${props => props.theme.secondaryColor};
+    color: var(--secondary-color);
     display: flex;
     position: fixed;
     width: 100%;
@@ -76,8 +76,8 @@ const Header = styled.header`
             background-color: rgba(45, 213, 201, 0.65);
           }
           &:hover {
-            background: ${props => props.theme.actionColor};
-            color: ${props => props.theme.primaryColor} !important;
+            background: var(--action-color);
+            color: var(--primary-color) !important;
           }
         }
       }
