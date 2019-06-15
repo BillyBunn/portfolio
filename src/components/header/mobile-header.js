@@ -93,9 +93,12 @@ const activeLinkStyles = {
 
 export default ({ routes }) => {
   const [open, setOpen] = useState(false)
+  const [listening, setListening] = useState(false)
+
   const navRef = useRef()
 
   const handleClick = e => {
+    console.log("handleClick")
     if (navRef.current.contains(e.target)) return // inside click
     setOpen(false) // outside click
   }
@@ -103,16 +106,26 @@ export default ({ routes }) => {
   const addClickListen = () => {
     console.log("added click listen")
     document.addEventListener("click", handleClick)
+    setListening(true)
   }
 
   const removeClickListen = () => {
     console.log("removed click listen")
     document.removeEventListener("click", handleClick)
+    setListening(false)
+  }
+
+  const cleanUp = () => {
+    if (!open) removeClickListen()
   }
 
   useEffect(() => {
-    open ? addClickListen() : removeClickListen()
-    return () => removeClickListen()
+    // open ? addClickListen() : removeClickListen()
+    // if (open && !listening) addClickListen()
+    if (open) addClickListen()
+
+    // return () => removeClickListen2()
+    return cleanUp()
   }, [open])
 
   const toggleMenu = () => setOpen(!open)
