@@ -4,9 +4,12 @@ import Layout from "components/layout"
 
 export default () => (
   <Layout>
-      <h1>
-        Hello, I'm <span>Billy Bunn</span>
-      </h1>
+    <h1>
+      Hello, I'm{" "}
+      <span style={{ color: `var(--accent)`, fontWeight: 600 }}>
+        Billy Bunn
+      </span>
+    </h1>
     <p>
       I'm a Software Developer who left a career in finance to pursue my passion
       for code.

@@ -62,31 +62,11 @@ table {
 	--min-width: 320px;
 	--max-width: 1024px;
 
-
-
 	/* Base font styles */
 	--min-font-size: 1rem;
 	--max-font-size: 2em;
 	--font-size: 1.3em;
 	--font-family: "Fira Sans", sans-serif;
-	--line-height: 1.45;
-	
+	--line-height: 1.6;
 	}
-
-	body {
-		font-family: var(--font-family);
-		font-size: var(--font-size);
-		line-height: var(--line-height);
-	}
-
-	/* Keeps "visited" links from changing color */
-  a,
-  a:visited {
-    color: inherit;
-    text-decoration-color: var(--accent);
-    transition: color 0.2s ease-in-out;
-    &:hover {
-      color: var(--accent);
-    }
-  }
 `

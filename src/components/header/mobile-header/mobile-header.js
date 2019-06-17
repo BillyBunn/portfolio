@@ -26,7 +26,7 @@ export default () => {
     document.removeEventListener("click", handleClick)
     setListening(false)
   }
-  
+
   const [open, setOpen] = useState(false)
   const openNav = () => {
     setOpen(true)
@@ -47,7 +47,12 @@ export default () => {
     <header>
       <MenuBar>
         <Link to="/">Billy Bunn</Link>
-        <MenuButton onClick={toggleNav}>Menu</MenuButton>
+        <MenuButton
+          onClick={toggleNav}
+          style={{ color: open ? "inherit" : "var(--accent)" }}
+        >
+          Menu
+        </MenuButton>
       </MenuBar>
       <Nav ref={navRef} style={{ display: open ? "block" : "none" }} />
     </header>
