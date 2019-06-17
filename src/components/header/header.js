@@ -1,52 +1,22 @@
-import React, { useState, useRef } from "react"
-import { Link } from "gatsby"
+import React, { useState, useEffect } from "react"
 
-export default () => {
-  const [open, setOpen] = useState(false)
-  const navRef = useRef()
+import DesktopHeader from "./desktop-header"
+import MobileHeader from "./mobile-header"
 
-  const openNav = () => {
-    setOpen(true)
-    document.addEventListener("click", handleClick)
-  }
-  const closeNav = () => {
-    setOpen(false)
-    document.removeEventListener("click", handleClick)
-  }
+export default ({ breakPoint }) => {
+  const [width, setWidth] = useState(window.innerWidth)
 
-  const toggleNav = e => {
-    e.preventDefault()
-    open ? closeNav() : openNav()
-  }
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth)
+    }
 
-  const handleClick = e => {
-    if (navRef.current && navRef.current.contains(e.target)) return
-    closeNav()
-  }
+    window.addEventListener("resize", handleResize)
 
-  return (
-    <header>
-      <div>
-        <Link to="/">Billy Bunn</Link>
-        <button onClick={toggleNav}>Menu</button>
-      </div>
-      <Nav ref={navRef} style={{ display: open ? "block" : "none" }} />
-    </header>
-  )
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
+  return width > breakPoint ? <DesktopHeader /> : <MobileHeader />
 }
-
-const Nav = React.forwardRef(({ ...other }, ref) => (
-  <nav ref={ref} {...other}>
-    <ul>
-      <li>
-        <Link to="/">About</Link>
-      </li>
-      <li>
-        <Link to="/">Work</Link>
-      </li>
-      <li>
-        <Link to="/">Contact</Link>
-      </li>
-    </ul>
-  </nav>
-))
