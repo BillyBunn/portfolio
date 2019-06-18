@@ -1,5 +1,5 @@
 import React from "react"
-import { TabFilter, TabList, Tab, Card } from "components/tab-filter"
+import { TabFilter, TabFilterItem } from "components/tab-filter"
 import Layout from "components/layout"
 
 export default () => (
@@ -10,33 +10,25 @@ export default () => (
       about the project or view the source code.
     </p>
     <TabFilter tags={["React", "Express", "VanillaJS"]}>
-      <TabList>
-        <Tab>React</Tab>
-        <Tab>Express</Tab>
-        <Tab>VanillaJS</Tab>
-        <Tab>Another thing</Tab>
-      </TabList>
-
-      <Card tags={["React"]} title={"React Only Project"}>
+      <TabFilterItem tags={["React"]} title={"React Only Project"}>
         <p>Some content in here perhaps</p>
-      </Card>
+      </TabFilterItem>
 
-      <Card tags={["React", "Express"]} title={"React & Express Project"}>
+      <TabFilterItem tags={["React", "Express"]} title={"React & Express Project"}>
         <p>Some content in here perhaps</p>
-      </Card>
+      </TabFilterItem>
 
-      <Card tags={["Express"]} title={"Express Only Project"}>
+      <TabFilterItem tags={["Express"]} title={"Express Only Project"}>
         <p>Some content in here perhaps</p>
-      </Card>
+      </TabFilterItem>
 
-      <Card tags={["VanillaJS"]} title={"VanillaJS Only Project"}>
+      <TabFilterItem tags={["VanillaJS"]} title={"VanillaJS Only Project"}>
         <p>Some content in here perhaps</p>
-      </Card>
+      </TabFilterItem>
 
-      <Card title={"Project With No Tags"}>
+      <TabFilterItem title={"Project With No Tags"}>
         <p>Some content in here perhaps</p>
-      </Card>
-      
+      </TabFilterItem>
     </TabFilter>
   </Layout>
 )

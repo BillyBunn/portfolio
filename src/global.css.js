@@ -53,8 +53,13 @@ table {
 
 :root {
 	/* Colors */
-	--primary: #202020; /* black */
-  --secondary: #f5f5f5; /* white */
+	${'' /* --primary: #202020;  */}
+	--primary: #1A222C; /* black */
+	--primary-light: #313842;
+	--primary-lighter: #2A3038;
+
+  ${'' /* --secondary: #f5f5f5;  */}
+	--secondary: #fff; /* white */
   --accent: #2dd5c9; /* light blue */
 	--primary-transparent: rgba(32, 32, 32, 0.9);
 	--accent-transparent: rgba(45, 213, 201, 0.5);

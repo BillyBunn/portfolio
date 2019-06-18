@@ -1,24 +1,34 @@
 import styled from "styled-components"
 
 export const StyledList = styled.ul`
-  border-bottom: 1px solid #aaa;
-  margin: 0 0 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  ${"" /* margin: 0 0 10px; */}
 `
 
 export const StyledLi = styled.li`
-  cursor: pointer;
-  border: 1px solid #aaa;
-  border-bottom: none;
-  display: inline-block;
-  margin: 0;
-  padding: 6px 12px;
+  /* For specificity */
+  /*https://www.styled-components.com/docs/faqs#how-can-i-override-styles-with-higher-specificity */
+  &&& {
+    background: var(--secondary);
+    cursor: pointer;
+    margin-bottom: 0;
+    padding: 6px 12px;
+  }
 `
 
 export const StyledCard = styled.div`
-background: var(--primary);
-color: var(--secondary);
-margin: 0.5em;
-padding: 0.5em;
+  background: var(--primary);
+  color: var(--secondary);
+  margin: 0 0.5em 0.5em 0.5em;
+  padding: 0.5em;
 `
 
 export const StyledSection = styled.section``
+export const StyledDiv = styled.div`
+  background: var(--primary-light);
+  display: flex;
+  flex-flow: column nowrap;
+  padding-top: 0.5em;
+`

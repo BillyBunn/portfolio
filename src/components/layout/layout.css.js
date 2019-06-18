@@ -32,14 +32,15 @@ export default styled.div`
   hr {
     border: 0;
     height: 2px;
-    background: #333;
-    background-image: linear-gradient(to right, var(--accent), var(--primary));
+    background: var(--accent);
+    ${"" /* background-image: linear-gradient(to right, var(--accent), var(--primary)); */}
   }
 
   > header {
     flex-shrink: 0;
   }
-  > main {
+
+  main {
     flex-grow: 1;
     line-height: var(--line-height);
     max-width: var(--max-width);

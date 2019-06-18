@@ -1,12 +1,13 @@
-import React, { useContext, useState, useRef } from "react"
+import React, { useContext, useState } from "react"
 import {
   StyledSection,
   StyledList,
   StyledLi,
   StyledCard,
+  StyledDiv,
 } from "./tab-filter.css"
 
-// ENTIRE SECTION -------------------------------------------------------------
+// Parent div and context provider -------------------------------------------------------------
 const TabFilterContext = React.createContext()
 export const TabFilter = ({ children, tags }) => {
   const [currentTab, setCurrentTab] = useState("All")
@@ -16,50 +17,58 @@ export const TabFilter = ({ children, tags }) => {
 
   return (
     <TabFilterContext.Provider value={{ changeTab, currentTab, tags }}>
-      <StyledSection>{children}</StyledSection>
+      <h3>Current: {currentTab}</h3>
+      <StyledSection>
+        <TabList />
+        <StyledDiv>{children}</StyledDiv>
+      </StyledSection>
     </TabFilterContext.Provider>
   )
 }
 
-// SINGLE TAB LIST ITEM ----------------------------------------------------------
-export const Tab = ({ children, tag = children, ...other }) => {
+// Single "tab" in the tab list -------------------------------------------------------------
+export const Tab = ({ children, tag = children }) => {
   const { changeTab, currentTab } = useContext(TabFilterContext)
 
   const handleClick = e => {
     e.preventDefault()
-    console.log("clicked", e)
+    console.dir(e.target)
     changeTab(e.target.innerText)
   }
 
-  const current = currentTab === tag ? true : false
+  const current = currentTab === tag
+
+  const currentTabStyle = {
+    backgroundColor: `var(--primary-light)`,
+    color: `var(--accent)`,
+  }
 
   return (
-    <StyledLi
-      style={{ backgroundColor: current ? `var(--accent)` : null }}
-      onClick={handleClick}
-      {...other}
-    >
+    <StyledLi style={current ? currentTabStyle : null} onClick={handleClick}>
       {children}
     </StyledLi>
   )
 }
 
-// UNORDERED LIST ======================================================
-export const TabList = ({ children }) => {
+// List of tabs; one for each tag -------------------------------------------------------------
+export const TabList = () => {
+  const { tags } = useContext(TabFilterContext)
   return (
     <StyledList>
-      <Tab current>All</Tab>
-      {children}
-      <Tab>Other</Tab>
+      <Tab>All</Tab>
+      {tags.map((tag, idx) => (
+        <Tab key={idx}>{tag}</Tab>
+      ))}
     </StyledList>
   )
 }
 
-export const Card = ({ tags = [], title, children }) => {
+// Single "item" that is hidden/shown depending on the current tab ---------------------------
+export const TabFilterItem = ({ tags = [], title, children }) => {
   const { currentTab } = useContext(TabFilterContext)
 
-  const show = tags.includes(currentTab)
-  // console.log('TAGS', typeof tags)
+  const show =
+    currentTab === "All" ? true : tags.some(tag => currentTab === tag)
 
   return (
     <StyledCard style={{ display: show ? `block` : `none` }}>
