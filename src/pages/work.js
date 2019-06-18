@@ -9,7 +9,7 @@ export default () => (
       Here's some of my work. You can click on the title to read more details
       about the project or view the source code.
     </p>
-    <TabFilter>
+    <TabFilter tags={["React", "Express", "VanillaJS"]}>
       <TabList>
         <Tab>React</Tab>
         <Tab>Express</Tab>
@@ -36,6 +36,7 @@ export default () => (
       <Card title={"Project With No Tags"}>
         <p>Some content in here perhaps</p>
       </Card>
+      
     </TabFilter>
   </Layout>
 )
