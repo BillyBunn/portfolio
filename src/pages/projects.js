@@ -24,13 +24,18 @@ export default props => {
         about the project or view the source code.
       </p>
       <TabFilter tags={allTags}>
-        {posts.map(({ node }, idx) => {
+        {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           const description = node.frontmatter.description || node.excerpt
           const tags = node.frontmatter.tags.split(", ")
-          const slug = node.fields.slug
+          const path = "/" + node.fields.collection + node.fields.slug
           return (
-            <TabFilterItem title={title} link={slug} tags={tags} key={slug}>
+            <TabFilterItem
+              title={title}
+              link={path}
+              tags={tags}
+              key={path}
+            >
               {description}
             </TabFilterItem>
           )
@@ -42,12 +47,17 @@ export default props => {
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { fields: { collection: { eq: "projects" } } }
+    ) {
       edges {
         node {
           excerpt
           fields {
             slug
+            path
+            collection
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")

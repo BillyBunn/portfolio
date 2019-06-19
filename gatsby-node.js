@@ -1,13 +1,10 @@
 const path = require("path")
 const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin")
-
-// -------------------------------------------------------------------
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+// Create pages from markdown files ------------------------------
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-
-  const projectPageTemplate = path.resolve(`./src/templates/project-page.js`)
   return graphql(
     `
       {
@@ -19,6 +16,8 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               fields {
                 slug
+                collection
+                path
               }
               frontmatter {
                 title
@@ -32,21 +31,40 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
+    const allEdges = result.data.allMarkdownRemark.edges
 
-    // Create project pages.
-    const posts = result.data.allMarkdownRemark.edges
+    // Project pages
+    const projectPages = allEdges.filter(
+      edge => edge.node.fields.collection === `projects`
+    )
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
-
+    projectPages.forEach((page, index) => {
+      const previous =
+        index === projectPages.length - 1 ? null : projectPages[index + 1].node
+      const next = index === 0 ? null : projectPages[index - 1].node
+      const filePath = page.node.fields.path
       createPage({
-        path: post.node.fields.slug,
-        component: projectPageTemplate,
+        path: filePath,
+        component: path.resolve(`./src/templates/project-page.js`),
         context: {
-          slug: post.node.fields.slug,
+          slug: page.node.fields.slug,
+          collection: page.node.fields.collection,
           previous,
           next,
+        },
+      })
+    })
+
+    // Non-project pages
+    const pageEdges = allEdges.filter(
+      edge => edge.node.fields.collection === `src`
+    )
+    pageEdges.forEach(page => {
+      createPage({
+        path: page.node.fields.slug,
+        component: path.resolve("./src/templates/page.js"),
+        context: {
+          slug: page.node.fields.slug,
         },
       })
     })
@@ -55,26 +73,40 @@ exports.createPages = ({ graphql, actions }) => {
   })
 }
 
+// Create nodes with fields for all markdown files -------------------
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({
-      node, // The node being converted to a path
-      getNode, // Method used to get a node; parameter from `onCreateNode` passed in here
-      basePath: `pages`, // The base path for files. Defaults to `src/pages`
-    })
-    const value = createFilePath({ node, getNode })
+    const parentFolder = getNode(node.parent).sourceInstanceName
+
+    const slug =
+      parentFolder === `projects`
+        ? createFilePath({ node, getNode })
+        : createFilePath({ node, getNode, basePath: `pages` })
+
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: slug,
+    })
+
+    createNodeField({
+      name: `collection`,
+      node,
+      value: parentFolder,
+    })
+
+    const path = parentFolder + slug
+    createNodeField({
+      name: `path`,
+      node,
+      value: path,
     })
   }
 }
 
-// -------------------------------------------------------------------------------------
-
+// ------------------------------------------------------------
 exports.onCreateWebpackConfig = ({
   stage,
   getConfig,
