@@ -7,10 +7,7 @@ import MobileHeader from "./mobile-header"
 export default ({ breakPoint }) => {
   const routes = ["about", "projects", "contact"]
   const size = useWindowSize()
-  
-  return size.width > breakPoint ? (
-    <DesktopHeader routes={routes} />
-  ) : (
-    <MobileHeader routes={routes} />
-  )
+
+  if (size.width > breakPoint) return <DesktopHeader routes={routes}ƒ/>
+  return <MobileHeader routes={routes} />
 }
