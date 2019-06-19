@@ -4,7 +4,7 @@ import DesktopHeader from "./desktop-header"
 import MobileHeader from "./mobile-header"
 
 export default ({ breakPoint }) => {
-  const routes = ["about", "work", "contact"]
+  const routes = ["about", "projects", "contact"]
   const [width, setWidth] = useState(window.innerWidth)
 
   useEffect(() => {

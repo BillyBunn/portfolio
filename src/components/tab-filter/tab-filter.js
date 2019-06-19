@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react"
+import { Link } from "gatsby"
 import {
   StyledSection,
   StyledList,
@@ -64,7 +65,7 @@ export const TabList = () => {
 }
 
 // Single "item" that is hidden/shown depending on the current tab ---------------------------
-export const TabFilterItem = ({ tags = [], title, children }) => {
+export const TabFilterItem = ({ tags = [], title, link, children }) => {
   const { currentTab } = useContext(TabFilterContext)
 
   const show =
@@ -72,11 +73,10 @@ export const TabFilterItem = ({ tags = [], title, children }) => {
 
   return (
     <StyledCard style={{ display: show ? `block` : `none` }}>
-      <a href="#">{title}</a>
+      {/* <a href="#">{title}</a> */}
+      <Link to={link}>{title}</Link>
 
       {/* {children} */}
-      {console.log("children", typeof children)}
-
       <p
         dangerouslySetInnerHTML={{
           __html: children,

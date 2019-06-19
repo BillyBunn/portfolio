@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import NavLink from "../../nav-link"
 
 import Nav from "./nav.css"

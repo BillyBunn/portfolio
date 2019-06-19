@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
 import Layout from "components/layout"
 
@@ -28,11 +27,6 @@ export default () => (
     <Splash>
       <h1>Billy Bunn</h1>
       <h2>Software Developer and former Public Accountant</h2>
-      {/* <p>
-        Learn more <Link to="/about">about me</Link>, see{" "}
-        <Link to="/work">my work</Link>, or{" "}
-        <Link to="/contact">get in touch.</Link>
-      </p> */}
     </Splash>
   </Layout>
 )

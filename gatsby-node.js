@@ -1,5 +1,5 @@
-const path = require('path');
-const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
+const path = require("path")
+const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin")
 
 // -------------------------------------------------------------------
 const { createFilePath } = require(`gatsby-source-filesystem`)
@@ -7,7 +7,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const projectPageTemplate = path.resolve(`./src/templates/project-page.js`)
   return graphql(
     `
       {
@@ -33,7 +33,7 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    // Create blog posts pages.
+    // Create project pages.
     const posts = result.data.allMarkdownRemark.edges
 
     posts.forEach((post, index) => {
@@ -42,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         path: post.node.fields.slug,
-        component: blogPost,
+        component: projectPageTemplate,
         context: {
           slug: post.node.fields.slug,
           previous,
@@ -59,6 +59,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({
+      node, // The node being converted to a path
+      getNode, // Method used to get a node; parameter from `onCreateNode` passed in here
+      basePath: `pages`, // The base path for files. Defaults to `src/pages`
+    })
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
@@ -79,11 +84,12 @@ exports.onCreateWebpackConfig = ({
 }) => {
   actions.setWebpackConfig({
     resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-      plugins: [new DirectoryNamedWebpackPlugin({
-        exclude: /node_modules/
-      })],
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      plugins: [
+        new DirectoryNamedWebpackPlugin({
+          exclude: /node_modules/,
+        }),
+      ],
     },
-  });
-};
-
+  })
+}
