@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "directory-named-webpack-plugin": "^4.0.1",
+    "gh-pages": "^2.0.1",
     "prettier": "^1.18.2"
   },
   "repository": {
