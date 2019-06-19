@@ -5,17 +5,21 @@ import MobileHeader from "./mobile-header"
 
 export default ({ breakPoint }) => {
   const routes = ["about", "projects", "contact"]
-  const [width, setWidth] = useState(window.innerWidth)
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1025
+  )
 
   useEffect(() => {
     const handleResize = () => {
-      setWidth(window.innerWidth)
+      setWidth(typeof window !== "undefined" ? window.innerWidth : 1025)
     }
 
-    window.addEventListener("resize", handleResize)
+    if (typeof window !== "undefined")
+      window.addEventListener("resize", handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize)
+      if (typeof window !== "undefined")
+        window.removeEventListener("resize", handleResize)
     }
   }, [])
 
