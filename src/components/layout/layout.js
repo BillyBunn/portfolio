@@ -9,7 +9,7 @@ export default ({ children }) => (
   <Layout>
     <Head />
     <GlobalStyle />
-    <Header breakPoint={700} />
+    <Header breakPoint={720} />
     <main>{children}</main>
     <Footer />
   </Layout>
