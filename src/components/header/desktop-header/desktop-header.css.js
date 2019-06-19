@@ -6,7 +6,7 @@ export const DesktopHeader = styled.header`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  padding: 0 2em;
+  padding: 0;
 
   > a {
     ${"" /* flex-grow: 0; */}

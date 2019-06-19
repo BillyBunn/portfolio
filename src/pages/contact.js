@@ -5,10 +5,10 @@ export default () => (
   <Layout>
     <h2>Let's talk</h2>
     <p>
-      If you're in the Seattle, WA area, I'm always happy to grab coffee and
-      talk about code.
+      I'm always happy to meet new faces and chat about code. If you're in the
+      Seattle, WA area, let's grab coffee. Feel free to reach out however is
+      easiest for you.
     </p>
-    <p>Feel free to reach out however is easiest for you.</p>
     <ul>
       <li>
         <a href="mailto:billy@billybunn.com?subject=Inquiry from BillyBunn.com">

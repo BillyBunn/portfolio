@@ -18,7 +18,7 @@ export const TabFilter = ({ children, tags }) => {
 
   return (
     <TabFilterContext.Provider value={{ changeTab, currentTab, tags }}>
-      <h3>Current: {currentTab}</h3>
+      {/* <h3>Current: {currentTab}</h3> */}
       <StyledSection>
         <TabList />
         <StyledDiv>{children}</StyledDiv>
