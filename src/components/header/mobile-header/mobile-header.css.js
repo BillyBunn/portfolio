@@ -24,3 +24,7 @@ export const MenuButton = styled.button`
   vertical-align: baseline;
   width: auto;
 `
+
+export const MobileHeader = styled.header`
+  ${'' /* width: 100%; */}
+`

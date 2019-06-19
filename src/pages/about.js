@@ -1,19 +1,39 @@
 import React from "react"
 import { Link } from "gatsby"
 import Layout from "components/layout"
+import BannerImage from "components/image"
+import Img from "gatsby-image"
 
-export default () => (
+export default props => (
   <Layout>
-    <h3>Hello</h3>
+    <BannerImage data={props.data.primaryImg.childImageSharp.fluid} />
     <p>
-      I'm a software developer and former public accountant. My experience in
-      finance informs my perspective developing software for clients while
-      keeping the users' experienced at the forefront.
+      I'm a software developer and former public accountant based in the
+      Seattle, WA area.
     </p>
     <p>
-      I have experience making full-stack applications with several modern tools
-      and libraries. I've built things with React, Node, Express, MongoDB, and
-      more. You can see some of my work <Link to="/work">here</Link>.
+      I learned a lot in the finance world that I carry with me into my current
+      work—it gives me a more informed perspective on client dynamics/needs and
+      user experiences.
+    </p>
+
+    <p>
+      I've made full-stack applications with several modern tools and libraries.
+      I've built things with React, Node, Express, MongoDB, and more. You can
+      see some of my work <Link to="/work">here</Link>.
+    </p>
+
+    <hr />
+    <h3>Available for Hire</h3>
+    <p>
+      I'm currently seeking a full-time software development role with a team in
+      the greater Seattle, WA area. If you're hiring or just want to grab some
+      coffee, hit me up on{" "}
+      <a href="https://www.linkedin.com/in/billybunn/">LinkedIn</a> or{" "}
+      <a href="mailto:billy@billybunn.com?subject=Inquiry from BillyBunn.com">
+        shoot me an email
+      </a>
+      .
     </p>
     <hr />
     <h3>Background</h3>
@@ -35,7 +55,7 @@ export default () => (
       my passions—building solutions to people's problems and constant learning.
     </p>
     <hr />
-    <h3>Finance to Software</h3>
+    <h3>The Transition to Coding</h3>
     <p>
       In late 2018, I took a leap and left the finance world to study coding and
       develop software full-time. I attended an intensive 20 week software
@@ -50,17 +70,17 @@ export default () => (
       working as a private tutor. I teach students one-on-one in the basics of
       programming and more advanced features of JavaScript.
     </p>
-    <hr />
-    <h3>Available for Hire</h3>
-    <p>
-      I'm currently seeking a full-time software development role with a team in
-      the greater Seattle, WA area. If you're hiring or just want to grab some
-      coffee, hit me up on{" "}
-      <a href="https://www.linkedin.com/in/billybunn/">LinkedIn</a> or{" "}
-      <a href="mailto:billy@billybunn.com?subject=Inquiry from BillyBunn.com">
-        shoot me an email
-      </a>
-      .
-    </p>
   </Layout>
 )
+
+export const pageQuery = graphql`
+  query {
+    primaryImg: file(relativePath: { eq: "headshot.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`

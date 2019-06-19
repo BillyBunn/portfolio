@@ -1,9 +1,11 @@
 import styled from "styled-components"
 
 export default styled.div`
-  min-height: 100vh;
+  background: var(--secondary);
+  color: var(--primary);
   display: flex;
   flex-flow: column nowrap;
+  min-height: 100vh;
 
   font-family: var(--font-family);
   font-size: var(--font-size);
@@ -46,6 +48,7 @@ export default styled.div`
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0.5em;
+    ${'' /* width: 100%; */}
     p,
     li {
       margin-bottom: 1em;

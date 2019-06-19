@@ -59,9 +59,9 @@ table {
 	--primary-lighter: #2A3038;
 
   ${'' /* --secondary: #f5f5f5;  */}
-	--secondary: #fff; /* white */
+	--secondary: #f5f5f5; /* white */
   --accent: #2dd5c9; /* light blue */
-	--primary-transparent: rgba(32, 32, 32, 0.9);
+	--primary-transparent: rgba(26, 34, 44, 0.9);
 	--accent-transparent: rgba(45, 213, 201, 0.5);
 
 	--min-width: 320px;

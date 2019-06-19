@@ -9,7 +9,7 @@ export const DesktopHeader = styled.header`
   padding: 0 2em;
 
   > a {
-    ${'' /* flex-grow: 0; */}
+    ${"" /* flex-grow: 0; */}
     align-items: center;
     display: flex;
     flex: 0 1 auto;
@@ -34,6 +34,13 @@ export const DesktopHeader = styled.header`
           height: 100%;
           justify-content: center;
           padding: 1em 2em;
+          &:hover {
+            background: var(--primary-light);
+          }
+          &.active-nav-link {
+            background: var(--primary-light);
+            color: var(--accent);
+          }
         }
       }
     }

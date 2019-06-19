@@ -1,19 +1,17 @@
 import React from "react"
 import { Link } from "gatsby"
+import NavLink from "../../nav-link"
+
 import Nav from "./nav.css"
 
-export default React.forwardRef(({ ...other }, ref) => (
+export default React.forwardRef(({ routes, ...other }, ref) => (
   <Nav ref={ref} {...other}>
     <ul>
-      <li>
-        <Link to="/about">About</Link>
-      </li>
-      <li>
-        <Link to="/work">Work</Link>
-      </li>
-      <li>
-        <Link to="/contact">Contact</Link>
-      </li>
+      {routes.map((route, idx) => (
+        <li key={idx}>
+          <NavLink route={route} />
+        </li>
+      ))}
     </ul>
   </Nav>
 ))

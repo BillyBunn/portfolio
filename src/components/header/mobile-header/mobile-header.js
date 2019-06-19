@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Link } from "gatsby"
-import { MenuBar, MenuButton } from "./mobile-header.css"
+import { MobileHeader, MenuBar, MenuButton } from "./mobile-header.css"
 import Nav from "./nav"
 
-export default () => {
+export default ({ routes }) => {
   const navRef = useRef()
   const handleClick = e => {
     if (navRef.current && navRef.current.contains(e.target)) return
@@ -44,7 +44,7 @@ export default () => {
   }
 
   return (
-    <header>
+    <MobileHeader>
       <MenuBar>
         <Link to="/">Billy Bunn</Link>
         <MenuButton
@@ -54,7 +54,11 @@ export default () => {
           Menu
         </MenuButton>
       </MenuBar>
-      <Nav ref={navRef} style={{ display: open ? "block" : "none" }} />
-    </header>
+      <Nav
+        ref={navRef}
+        style={{ display: open ? "block" : "none" }}
+        routes={routes}
+      />
+    </MobileHeader>
   )
 }

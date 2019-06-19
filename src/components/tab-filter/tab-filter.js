@@ -32,7 +32,7 @@ export const Tab = ({ children, tag = children }) => {
 
   const handleClick = e => {
     e.preventDefault()
-    console.dir(e.target)
+    // console.dir(e.target)
     changeTab(e.target.innerText)
   }
 
