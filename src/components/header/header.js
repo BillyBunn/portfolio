@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 
 import DesktopHeader from "./desktop-header"
@@ -8,6 +8,9 @@ export default ({ breakPoint }) => {
   const routes = ["about", "projects", "contact"]
   const size = useWindowSize()
 
-  if (size.width > breakPoint) return <DesktopHeader routes={routes}ƒ/>
-  return <MobileHeader routes={routes} />
+  if (size.width > breakPoint) {
+    return <DesktopHeader routes={routes} />
+  } else {
+    return <MobileHeader routes={routes} />
+  }
 }
