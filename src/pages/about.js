@@ -19,7 +19,7 @@ export default props => (
     <p>
       I've made full-stack applications with several modern tools and libraries.
       I've built things with React, Node, Express, MongoDB, and more. You can
-      see some of my work <Link to="/work">here</Link>.
+      see some of my work <Link to="/projects">here</Link>.
     </p>
 
     <hr />
