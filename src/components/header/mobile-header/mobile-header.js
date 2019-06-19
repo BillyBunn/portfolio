@@ -39,7 +39,6 @@ export default ({ routes }) => {
 
   const toggleNav = e => {
     e.preventDefault()
-    console.log("toggleNav")
     open ? closeNav() : openNav()
   }
 

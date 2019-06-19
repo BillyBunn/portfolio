@@ -10,7 +10,7 @@ import {
 // Parent div and context provider -------------------------------------------------------------
 const TabFilterContext = React.createContext()
 export const TabFilter = ({ children, tags }) => {
-  const [currentTab, setCurrentTab] = useState("All")
+  const [currentTab, setCurrentTab] = useState("all")
   const changeTab = tab => {
     setCurrentTab(tab)
   }
@@ -55,7 +55,7 @@ export const TabList = () => {
   const { tags } = useContext(TabFilterContext)
   return (
     <StyledList>
-      <Tab>All</Tab>
+      <Tab>all</Tab>
       {tags.map((tag, idx) => (
         <Tab key={idx}>{tag}</Tab>
       ))}
@@ -68,12 +68,20 @@ export const TabFilterItem = ({ tags = [], title, children }) => {
   const { currentTab } = useContext(TabFilterContext)
 
   const show =
-    currentTab === "All" ? true : tags.some(tag => currentTab === tag)
+    currentTab === "all" ? true : tags.some(tag => currentTab === tag)
 
   return (
     <StyledCard style={{ display: show ? `block` : `none` }}>
       <a href="#">{title}</a>
-      {children}
+
+      {/* {children} */}
+      {console.log("children", typeof children)}
+
+      <p
+        dangerouslySetInnerHTML={{
+          __html: children,
+        }}
+      />
     </StyledCard>
   )
 }
