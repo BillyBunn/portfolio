@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const StyledList = styled.ul`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   ${"" /* margin: 0 0 10px; */}
 `
@@ -15,6 +15,9 @@ export const StyledLi = styled.li`
     cursor: pointer;
     margin-bottom: 0;
     padding: 6px 12px;
+    &:first-child {
+      font-weight: 600;
+    }
   }
 `
 
