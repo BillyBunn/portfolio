@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "components/layout"
-import BannerImage from "components/image"
+import { BannerImg } from "components/image"
 
 export default props => (
   <Layout>
-    <BannerImage data={props.data.primaryImg.childImageSharp.fluid} />
+    <BannerImg data={props.data.primaryImg.childImageSharp.fluid} />
     <p>
       I'm a software developer and former public accountant based in the
       Seattle, WA area.
