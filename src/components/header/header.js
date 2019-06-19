@@ -10,7 +10,9 @@ export default ({ breakPoint }) => {
 
   if (size.width > breakPoint) {
     return <DesktopHeader routes={routes} />
-  } else {
+  } else if (size.width < breakPoint) {
     return <MobileHeader routes={routes} />
+  } else {
+    return <DesktopHeader routes={routes} />
   }
 }
