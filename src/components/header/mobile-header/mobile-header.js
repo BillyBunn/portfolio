@@ -7,10 +7,8 @@ import Nav from "./nav"
 export default ({ routes }) => {
   const ref = useRef()
   const [isNavOpen, setNavOpen] = useState(false)
-  const toggle = () => {
-    console.log("toggle")
-    setNavOpen(true)
-  }
+  const toggle = () => setNavOpen(true)
+
   useOnClickOutside(ref, () => setNavOpen(false))
 
   return (
@@ -28,7 +26,6 @@ export default ({ routes }) => {
           Menu
         </MenuButton>
       </MenuBar>
-      {console.log("isNavOpen", isNavOpen)}
       <Nav
         ref={ref}
         style={{
