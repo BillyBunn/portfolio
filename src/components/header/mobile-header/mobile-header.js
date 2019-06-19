@@ -1,61 +1,39 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import { Link } from "gatsby"
+import useOnClickOutside from "../../../hooks/onClickOutside"
 import { MobileHeader, MenuBar, MenuButton } from "./mobile-header.css"
 import Nav from "./nav"
 
 export default ({ routes }) => {
-  const navRef = useRef()
-  const handleClick = e => {
-    if (navRef.current && navRef.current.contains(e.target)) return
-    closeNav()
+  const ref = useRef()
+  const [isNavOpen, setNavOpen] = useState(false)
+  const toggle = () => {
+    console.log("toggle")
+    setNavOpen(true)
   }
-
-  const [listening, setListening] = useState(false)
-  useEffect(() => {
-    if (listening) return () => removeListener()
-    return () => {
-      if (listening) return () => removeListener()
-    }
-  })
-
-  const addListener = () => {
-    document.addEventListener("click", handleClick)
-    setListening(true)
-  }
-  const removeListener = () => {
-    document.removeEventListener("click", handleClick)
-    setListening(false)
-  }
-
-  const [open, setOpen] = useState(false)
-  const openNav = () => {
-    setOpen(true)
-    addListener()
-  }
-  const closeNav = () => {
-    setOpen(false)
-    removeListener()
-  }
-
-  const toggleNav = e => {
-    e.preventDefault()
-    open ? closeNav() : openNav()
-  }
+  useOnClickOutside(ref, () => setNavOpen(false))
 
   return (
     <MobileHeader>
       <MenuBar>
         <Link to="/">Billy Bunn</Link>
         <MenuButton
-          onClick={toggleNav}
-          style={{ color: open ? "inherit" : "var(--accent)" }}
+          onClick={toggle}
+          style={{
+            color: isNavOpen ? "inherit" : "var(--accent)",
+            pointerEvents: isNavOpen ? "none" : "auto",
+            cursor: isNavOpen ? "pointer" : "pointer",
+          }}
         >
           Menu
         </MenuButton>
       </MenuBar>
+      {console.log("isNavOpen", isNavOpen)}
       <Nav
-        ref={navRef}
-        style={{ display: open ? "block" : "none" }}
+        ref={ref}
+        style={{
+          display: isNavOpen ? "block" : "none",
+        }}
         routes={routes}
       />
     </MobileHeader>
