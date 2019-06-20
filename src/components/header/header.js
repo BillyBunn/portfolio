@@ -8,7 +8,7 @@ export default ({ breakPoint }) => {
   const routes = ["about", "projects", "contact"]
   const size = useWindowSize()
 
-  // console.log("SIZE WIDTH", size.width)
+  console.log("SIZE WIDTH", size.width)
   // console.log("HELLO WORLD")
 
   if (size.width > breakPoint) {
