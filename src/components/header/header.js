@@ -8,11 +8,12 @@ export default ({ breakPoint }) => {
   const routes = ["about", "projects", "contact"]
   const size = useWindowSize()
 
+  // console.log("SIZE WIDTH", size.width)
+  // console.log("HELLO WORLD")
+
   if (size.width > breakPoint) {
     return <DesktopHeader routes={routes} />
-  } else if (size.width < breakPoint) {
-    return <MobileHeader routes={routes} />
   } else {
-    return <DesktopHeader routes={routes} />
+    return <MobileHeader routes={routes} />
   }
 }
