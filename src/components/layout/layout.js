@@ -9,7 +9,7 @@ export default ({ children }) => (
   <Layout>
     <Head />
     <GlobalStyle />
-    <Header breakPoint={720} />
+    <Header breakPoint={700} routes={["about", "projects", "contact"]} />
     <main>{children}</main>
     <Footer />
   </Layout>

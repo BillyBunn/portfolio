@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react"
 import { Link } from "gatsby"
 import useOnClickOutside from "../../../hooks/onClickOutside"
-import { MobileHeader, MenuBar, MenuButton } from "./mobile-header.css"
+import NavLink from "../nav-link"
 
-import Nav from "./nav"
+import { MobileHeader, MenuBar, MenuButton, MobileNav } from "./mobile-header.css"
 
 export default ({ routes }) => {
   const ref = useRef()
@@ -37,3 +37,15 @@ export default ({ routes }) => {
     </MobileHeader>
   )
 }
+
+const Nav = React.forwardRef(({ routes, ...other }, ref) => (
+  <MobileNav ref={ref} {...other}>
+    <ul>
+      {routes.map((route, idx) => (
+        <li key={idx}>
+          <NavLink route={route} />
+        </li>
+      ))}
+    </ul>
+  </MobileNav>
+))
