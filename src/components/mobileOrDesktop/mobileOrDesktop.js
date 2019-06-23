@@ -6,16 +6,16 @@ const mobileOrDesktop = (MobileComponent, DesktopComponent) => ({
   ...props
 }) => {
   const size = useWindowSize()
-  const [isMobile, setIsMobile] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setIsMobile(size.width < breakPoint)
-  }, [size])
+  })
 
-  return isMobile ? (
-    <MobileComponent {...props} />
-  ) : (
+  return !isMobile ? (
     <DesktopComponent {...props} />
+  ) : (
+    <MobileComponent {...props} />
   )
 }
 

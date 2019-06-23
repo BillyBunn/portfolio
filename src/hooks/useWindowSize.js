@@ -5,6 +5,7 @@ export default () => {
   const isClient = typeof window === "object"
 
   function getSize() {
+    console.log('getSize')
     return {
       width: isClient ? window.innerWidth : undefined,
       height: isClient ? window.innerHeight : undefined,
