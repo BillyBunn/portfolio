@@ -11,7 +11,7 @@ import {
 // Parent div and context provider -------------------------------------------------------------
 const TabFilterContext = React.createContext()
 export const TabFilter = ({ children, tags }) => {
-  const [currentTab, setCurrentTab] = useState("all")
+  const [currentTab, setCurrentTab] = useState("All")
   const changeTab = tab => {
     setCurrentTab(tab)
   }
@@ -56,7 +56,7 @@ export const TabList = () => {
   const { tags } = useContext(TabFilterContext)
   return (
     <StyledList>
-      <Tab>all</Tab>
+      <Tab>All</Tab>
       {tags.map((tag, idx) => (
         <Tab key={idx}>{tag}</Tab>
       ))}
@@ -69,7 +69,7 @@ export const TabFilterItem = ({ tags = [], title, link, children }) => {
   const { currentTab } = useContext(TabFilterContext)
 
   const show =
-    currentTab === "all" ? true : tags.some(tag => currentTab === tag)
+    currentTab === "All" ? true : tags.some(tag => currentTab === tag)
 
   return (
     <StyledCard style={{ display: show ? `block` : `none` }}>

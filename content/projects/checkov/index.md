@@ -1,9 +1,9 @@
 ---
 title: Checkov
 date: "2019-02-01"
-description: A to-do list app in pure, vanilla JavaScript
+description: A to-do list app in pure, vanilla JavaScript.
 source: https://github.com/abc-s/201-final-project
-tags: vanillajs
+tags: VanillaJS
 ---
 
 ![checkov logo](./checkov-logo.png)

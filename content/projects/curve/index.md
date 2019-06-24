@@ -1,7 +1,7 @@
 ---
 title: Curve
-date: "2015-05-06T23:46:37.121Z"
-tags: react, graphql
+date: "2015-05-24"
+tags: React, GraphQL
 ---
 
 Based on Medium's open source Snowflake project, this application represents the interdisciplinary efforts of a group of twenty JavaScript and C# developers over a four day time period.
