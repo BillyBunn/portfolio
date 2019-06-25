@@ -16,3 +16,7 @@ This project uses the following:
 - **3rd-Party APIs**: [Alpha Vantage](https://www.alphavantage.co/)
 
 See it deployed at [hindsite.trade](http://hindsite.trade/).
+
+![hindsite trader new search screen](./hindsite-trader-1.png)
+![hindsite trader search results screen](./hindsite-trader-1.png)
+![hindsite trader portfolio screen](./hindsite-trader-1.png)

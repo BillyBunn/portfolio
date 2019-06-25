@@ -14,6 +14,6 @@ export default () => (
         <a href="https://twitter.com/billybunn">Twitter</a>
       </li>
     </ul>
-    <p>&copy; 2019 Billy Bunn</p>
+    <p>&copy; {new Date().getFullYear()} Billy Bunn</p>
   </Footer>
 )

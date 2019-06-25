@@ -1,74 +1,82 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import styled from "styled-components"
 
-// import Bio from "../components/bio"
 import Layout from "components/layout"
 // import SEO from "../components/seo"
-// import { rhythm, scale } from "../utils/typography"
 
-class ProjectPageTemplate extends React.Component {
-  render() {
-    const post = this.props.data.markdownRemark
-    // const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+const PrevAndNext = styled.ul`
+  display: flex;
+  flexwrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+`
 
-    return (
-      <Layout
-      // location={this.props.location}
-      // title={siteTitle}
-      >
-        {/* <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
-        /> */}
-        <h1>{post.frontmatter.title}</h1>
-        <p
-          style={{
-            // ...scale(-1 / 5),
-            display: `block`,
-            // marginBottom: rhythm(1),
-            // marginTop: rhythm(-1),
-          }}
-        >
-          {post.frontmatter.date}
-        </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={
-            {
-              // marginBottom: rhythm(1),
-            }
-          }
-        />
-        {/* <Bio /> */}
-
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={`/${previous.fields.path}`} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={`/${next.fields.path}`} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </Layout>
-    )
+const ProjectPageLayout = styled(Layout)`
+  img.headerImg {
+    width: 4em;
   }
+`
+
+const ProjectContent = styled.article`
+  ul {
+    list-style: disc;
+  }
+  strong {
+    font-weight: 600;
+  }
+`
+
+const PageHeader = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1em;
+  > img {
+    height: auto;
+    margin: 0 auto;
+    width: 30%;
+  }
+`
+
+const ProjectPageTemplate = props => {
+  const post = props.data.markdownRemark
+  // const siteTitle = props.data.site.siteMetadata.title
+  const headerImg = post.frontmatter.image ? post.frontmatter.image.childImageSharp.fluid.originalImg : null
+  console.log(post.frontmatter)
+  const { previous, next } = props.pageContext
+
+  return (
+    <ProjectPageLayout>
+      <PageHeader>
+        <h2>{post.frontmatter.title}</h2>
+        <p>{post.frontmatter.date}</p>
+        {headerImg ? (
+          <img className="headerImg" src={headerImg} alt="project logo" />
+        ) : null}
+      </PageHeader>
+      <ProjectContent dangerouslySetInnerHTML={{ __html: post.html }} />
+      <hr />
+      {/* <Bio /> */}
+
+      <PrevAndNext>
+        <li>
+          {previous && (
+            <Link to={`/${previous.fields.path}`} rel="prev">
+              ← {previous.frontmatter.title}
+            </Link>
+          )}
+        </li>
+        <li>
+          {next && (
+            <Link to={`/${next.fields.path}`} rel="next">
+              {next.frontmatter.title} →
+            </Link>
+          )}
+        </li>
+      </PrevAndNext>
+    </ProjectPageLayout>
+  )
 }
 
 export default ProjectPageTemplate
@@ -83,6 +91,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        image {
+          childImageSharp {
+            fluid {
+              originalImg
+            }
+          }
+        }
       }
     }
   }

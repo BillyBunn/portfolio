@@ -4,9 +4,8 @@ date: "2019-02-01"
 description: A to-do list app in pure, vanilla JavaScript.
 source: https://github.com/abc-s/201-final-project
 tags: VanillaJS
+image: ./checkov-logo.png
 ---
-
-![checkov logo](./checkov-logo.png)
 
 Checkov is a to-do list app written completely in JavaScript, HTML, and CSS. Users can create a to-do list and add, edit (on double-click), and delete individual tasks on their list. It also persists the user's to-do list across sessions using the browser's local storage.
 

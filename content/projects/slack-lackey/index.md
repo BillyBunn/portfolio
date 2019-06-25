@@ -4,9 +4,10 @@ date: "2019-04-19"
 description: A Slack bot that detects code in messages and saves them as a GitHub gist.
 source: https://github.com/slack-lackey/docs
 tags: Express, MongoDB, Node
+image: ./slack-lackey-logo.png
 ---
 
-![Robot icon for Slack Lackey](./slack-lackey-logo.png)
+<!-- ![Robot icon for Slack Lackey](./slack-lackey-logo.png) -->
 
 Slack Lackey is a chat bot built with NodeJS, MongoDB, GitHub's API, and several of Slack's APIs. When Slack Lackey is installed to a Slack workspace and invited to a channel, the bot will detect any code within messages (a code snippet or code block) and privately ask the sender if they'd like to save a gist on GitHub. If the user accepts, the app saves the code as a gist and sends the user a link. The app also presents the user an option to share the link publicly with the channel.
 
