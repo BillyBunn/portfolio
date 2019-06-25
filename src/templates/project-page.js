@@ -32,6 +32,10 @@ const PageHeader = styled.div`
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 1em;
+  > a {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
   > img {
     height: auto;
     margin: 0 auto;
@@ -41,8 +45,10 @@ const PageHeader = styled.div`
 
 const ProjectPageTemplate = props => {
   const post = props.data.markdownRemark
-  // const siteTitle = props.data.site.siteMetadata.title
-  const headerImg = post.frontmatter.image ? post.frontmatter.image.childImageSharp.fluid.originalImg : null
+  const sourceCode = post.frontmatter.source
+  const headerImg = post.frontmatter.image
+    ? post.frontmatter.image.childImageSharp.fluid.originalImg
+    : null
   console.log(post.frontmatter)
   const { previous, next } = props.pageContext
 
@@ -50,6 +56,7 @@ const ProjectPageTemplate = props => {
     <ProjectPageLayout>
       <PageHeader>
         <h2>{post.frontmatter.title}</h2>
+        <a href={sourceCode}>View source code on GitHub</a>
         <p>{post.frontmatter.date}</p>
         {headerImg ? (
           <img className="headerImg" src={headerImg} alt="project logo" />
@@ -91,6 +98,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        source
         image {
           childImageSharp {
             fluid {
