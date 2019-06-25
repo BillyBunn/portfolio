@@ -3,7 +3,7 @@ title: Slack Lackey
 date: "2019-04-19"
 description: A Slack bot that detects code in messages and saves them as a GitHub gist.
 source: https://github.com/slack-lackey/docs
-tags: Express, MongoDB
+tags: Express, MongoDB, Node
 ---
 
 ![Robot icon for Slack Lackey](./slack-lackey-logo.png)
