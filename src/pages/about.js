@@ -13,7 +13,8 @@ export default props => (
     <p>
       Currently, I make full-stack applications with modern tools and libraries.
       I've built things with React, Node, Express, MongoDB, and more. You can
-      see some of my work <Link to="/projects">here</Link>.
+      see some of my work <Link to="/projects">here</Link>. I'm also a private
+      tutor at <a href="https://www.codefellows.org/">Code Fellows</a>.
     </p>
     <p>
       Previously, I was a financial statement auditor for an international
@@ -29,7 +30,7 @@ export default props => (
     <p>
       I'm currently seeking a full-time software development role with a team in
       the greater Seattle, WA area. If you're hiring or just want to grab some
-      coffee, reach out to me on
+      coffee, reach out to me on{" "}
       <a href="https://www.linkedin.com/in/billybunn/">LinkedIn</a> or{" "}
       <a href="mailto:billy@billybunn.com?subject=Inquiry from BillyBunn.com">
         shoot me an email
