@@ -2,6 +2,7 @@
 title: Curve
 date: "2015-05-24"
 tags: React, GraphQL
+source: https://github.com/CodeFellows-Curve/project-resources
 image: ./curve-logo.png
 ---
 
