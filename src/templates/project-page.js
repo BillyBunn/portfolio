@@ -49,7 +49,7 @@ const ProjectPageTemplate = props => {
   const headerImg = post.frontmatter.image
     ? post.frontmatter.image.childImageSharp.fluid.originalImg
     : null
-  console.log(post.frontmatter)
+  // console.log(post.frontmatter)
   const { previous, next } = props.pageContext
 
   return (
