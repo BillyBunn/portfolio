@@ -14,9 +14,34 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 /* sc-component-id: project-page__ProjectContent-mn9its-2 */
 .PshHz ul{list-style:disc;} .PshHz strong{font-weight:600;}
 /* sc-component-id: project-page__PageHeader-mn9its-3 */
-.kkqcIG{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-flow:column nowrap;-ms-flex-flow:column nowrap;flex-flow:column nowrap;margin-bottom:1em;} .kkqcIG > a{-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration-color:var(--accent);text-decoration-color:var(--accent);} .kkqcIG > img{height:auto;margin:0 auto;width:30%;}</style><title data-react-helmet="true"></title><link data-react-helmet="true" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,600,600i,900&amp;display=swap" rel="stylesheet"/><link as="script" rel="preload" href="/webpack-runtime-2b88cb42babd12e93043.js"/><link as="script" rel="preload" href="/app-513e2783b7ef974d9da6.js"/><link as="script" rel="preload" href="/0-fae90995efc464b023a3.js"/><link as="script" rel="preload" href="/component---src-templates-project-page-js-f255000582892cc2e1d1.js"/><link as="fetch" rel="preload" href="/page-data/projects/checkov/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="layoutcss-sc-1g0m063-0 guUnQI"><header class="desktop-headercss__DesktopHeader-sc-39r2xc-0 kSUQPr"><a href="/">Billy Bunn</a><nav><ul><li><a href="/about">About</a></li><li><a class="active-nav-link" href="/projects">Projects</a></li><li><a href="/contact">Contact</a></li></ul></nav></header><main><div class="project-page__PageHeader-mn9its-3 kkqcIG"><h2>Checkov</h2><a href="https://github.com/abc-s/201-final-project">View source code on GitHub</a><p>February 01, 2019</p><img class="headerImg" src="/static/27127996d37f824316e6178d61921288/6eaa4/checkov-logo.png" alt="project logo"/></div><article class="project-page__ProjectContent-mn9its-2 PshHz"><p>Checkov is a to-do list app written completely in JavaScript, HTML, and CSS. Users can create a to-do list and add, edit (on double-click), and delete individual tasks on their list. It also persists the user’s to-do list across sessions using the browser’s local storage.</p>
+.kkqcIG{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-flow:column nowrap;-ms-flex-flow:column nowrap;flex-flow:column nowrap;margin-bottom:1em;} .kkqcIG > a{-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration-color:var(--accent);text-decoration-color:var(--accent);} .kkqcIG > img{height:auto;margin:0 auto;width:30%;}</style><title data-react-helmet="true"></title><link data-react-helmet="true" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,600,600i,900&amp;display=swap" rel="stylesheet"/><link as="script" rel="preload" href="/webpack-runtime-2b88cb42babd12e93043.js"/><link as="script" rel="preload" href="/app-513e2783b7ef974d9da6.js"/><link as="script" rel="preload" href="/0-fae90995efc464b023a3.js"/><link as="script" rel="preload" href="/component---src-templates-project-page-js-f255000582892cc2e1d1.js"/><link as="fetch" rel="preload" href="/page-data/projects/checkov/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="layoutcss-sc-1g0m063-0 guUnQI"><header class="desktop-headercss__DesktopHeader-sc-39r2xc-0 kSUQPr"><a href="/">Billy Bunn</a><nav><ul><li><a href="/about">About</a></li><li><a class="active-nav-link" href="/projects">Projects</a></li><li><a href="/contact">Contact</a></li></ul></nav></header><main><div class="project-page__PageHeader-mn9its-3 kkqcIG"><h2>Checkov</h2><a href="https://github.com/BillyBunn/chekov">View source code on GitHub</a><p>February 01, 2019</p><img class="headerImg" src="/static/27127996d37f824316e6178d61921288/6eaa4/checkov-logo.png" alt="project logo"/></div><article class="project-page__ProjectContent-mn9its-2 PshHz"><p>Chekov is to-do list app written in pure, vanilla JavaScript. It allows users to create multiple to-do lists and add, edit, and delete tasks on each list. Data is persisted across browser sessions using local storage.</p>
+<p>The application is written using only JavaScript, HTML, and CSS—no outside libraries, frameworks, or languages are used.</p>
+<p>This version of the application was designed with a Model-View-Controller pattern.</p>
+<ul>
+<li><code class="language-text">model.js</code> defines the shape of the persisted list and task data stored in local storage. It uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"><code class="language-text">Window.localstorage</code></a> API to fetch/save data.</li>
+<li><code class="language-text">view.js</code> displays the current Model data to the user. It renders all the dynamic DOM elements to the page, sets up all the event listeners, and passes functions from <code class="language-text">controller.js</code> to handle events where a change in the view or model needs to take place.</li>
+<li>
+<p><code class="language-text">controller.js</code> receives user input (through DOM event handlers) which update the Model and View. To achieve this, the Controller takes an instance of a Model and View in its class constructor and calls the appropriate methods of each, depending on the user interaction.</p>
+<blockquote>
+<p>An interesting piece of this app: to respond to events on the page, the Controller passes its class methods <em>into</em> View class’s methods. To keep the Controller’s methods bound to the appropriate <code class="language-text">this</code>, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind"><code class="language-text">bind()</code></a> method is used when they’re passed in as parameters. See this in <a href="https://github.com/BillyBunn/chekov/blob/master/js/controller.js">the class constructor in <code class="language-text">controller.js</code></a>.</p>
+</blockquote>
+</li>
+<li><code class="language-text">app.js</code> serves as the entry point, where instances of the Model, View, and Controller are created and the application is started.</li>
+</ul>
+<p><a href="https://billybunn.com/chekov/">See it deployed on GitHub pages</a></p>
+<hr>
+<h3>Original Project</h3>
+<p>This repository is a fork of a final course project at a coding bootcamp, <a href="https://www.codefellows.org/">Code Fellows</a>’ <em>Code 201</em> course. The original project was created by 4 junior developers (with only 3 weeks of programming experience) in four days.</p>
+<p>This fork is a re-working of the original project by <a href="https://github.com/BillyBunn">Billy Bunn</a>, started and completed approximately four months later.</p>
+<h4>Original Team Credits</h4>
+<ul>
+<li><a href="https://github.com/sabdi21">Shukri Abdi</a></li>
+<li><a href="https://github.com/BillyBunn">Billy Bunn</a></li>
+<li><a href="https://github.com/amjcurtis">Andrew Curtis</a></li>
+<li><a href="https://github.com/cory0s">Cory Henderson</a></li>
+</ul>
 <p>This was one of my first projects as a new developer—at the time, I had only three weeks of experience learning programming basics and JavaScript syntax. The app was built in the course of four days on a team of four peers (complete beginners).</p>
-<p>There were several constraints/requirements given to my team for this project:</p>
+<p>There were several constraints/requirements given to my team for the original project:</p>
 <ul>
 <li>No 3rd-party frameworks or libraries—only pure JavaScript for all logic and DOM manipulation</li>
 <li>Roughly follow some agile software programming practices (pair programming, <a href="https://github.com/abc-s/201-final-project/blob/master/planning/user-stories.md">user stories</a>, <a href="https://github.com/abc-s/201-final-project/projects/1">workflow organization</a>, etc.)</li>
@@ -24,67 +49,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 <li>Begin work Monday and complete all work Thursday (of the same week)</li>
 <li>Give a project presentation that Friday (<a href="https://github.com/abc-s/201-final-project/blob/master/planning/presentation-slideshow.pdf">slides</a>)</li>
 </ul>
-<p>It’s always fun looking back and laughing at old work. There’s <em>plenty</em> I’d do differently now, but I’m proud of what this small app represents in my journey as a developer.</p>
-<p><a href="https://abc-s.github.io/201-final-project">See it deployed on GitHub Pages</a>.</p>
-<p><a
-    class="gatsby-resp-image-link"
-    href="/static/817f3e7a0517f8af5d25efb64b4cc670/82b63/checkov-1.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-wrapper"
-    style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
-  >
-    <span
-      class="gatsby-resp-image-background-image"
-      style="padding-bottom: 54.3452380952381%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABS0lEQVQoz41S207CQBDl/79A/0CDiCViNa0IqQF9EAslxlhot/QGKBoefD7OLF3c1KI+nMzM2d2zc6uJJEcYZ2BbhuJfRAz/wUUUJQgLXqH8vrYjtENGME93kHG6QKAJKX6/oGbTxSuy5Rvy1VoiyVfSMhdnSwmOq6qr6Vkpv9e/h307QNu+gdnp4c71cE6+5fQxGI5hXNowTAt+OEdEmVdmqEguy+k6uG4a6LbasJst9MheHddhnRoY00dO28QF8TMq+48eUm8o/vQmgPsIjEZkXcDzAN/f+sPh1hJEMSSxV5AzpXg+DZBNniTSaYj1SQMfB4fSz4ljxM/+t9jeoRQXQp4oNZ6zna03SKwO8qM6Zu8byfEZ3xFq6lVDEUpM/5XB60ETDUiYfVGq5tcMf6B4FJGNdIGqu/8R5OVNafe6tC6Ns5b09Y2owhfwexkhIYbhrgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
-    ></span>
-    <img
-        class="gatsby-resp-image-image"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
-        alt="checkov initial screen"
-        title=""
-        src="/static/817f3e7a0517f8af5d25efb64b4cc670/b9e4f/checkov-1.png"
-        srcset="/static/817f3e7a0517f8af5d25efb64b4cc670/cf440/checkov-1.png 148w,
-/static/817f3e7a0517f8af5d25efb64b4cc670/d2d38/checkov-1.png 295w,
-/static/817f3e7a0517f8af5d25efb64b4cc670/b9e4f/checkov-1.png 590w,
-/static/817f3e7a0517f8af5d25efb64b4cc670/f9b6a/checkov-1.png 885w,
-/static/817f3e7a0517f8af5d25efb64b4cc670/2d849/checkov-1.png 1180w,
-/static/817f3e7a0517f8af5d25efb64b4cc670/82b63/checkov-1.png 3360w"
-        sizes="(max-width: 590px) 100vw, 590px"
-      />
-  </span>
-  </a>
-<a
-    class="gatsby-resp-image-link"
-    href="/static/dddc26df5013c8b64808f3e6ae57759e/ca786/checkov-2.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-wrapper"
-    style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
-  >
-    <span
-      class="gatsby-resp-image-background-image"
-      style="padding-bottom: 54.18279249776718%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABU0lEQVQoz5WS206DQBCG+/7PYWJ8Bi+MsTEmXpjaWKQte2Bhl1PpwXJoq/mdxWBJoxYvJj8Lsx/zz8xABAZcaZxqG54MMHbneB7eYzr1wPwQTMfgFMLmUH737qB76D4HJoaOM7w4Lp5GY4wmr3DcGeLlGtqZQk7cb+hZoE+JgY7AhUSSZiirGkVRYrstsKl3SO6G8B8ewemHfwK76ocRGJfQJsJytf6CVhWKty187oOZpJ/lLlCqANkiR1XXFLsmyrJC4HFw6mWTf85ye1Zk2eMCG6ro8P6B3X6P/eGAmioN5/x4p08PW52TNQsOyJ4dklVlJyzUj236FShJHaYxmQmCysa+HxoaFil9Z7Q+/wAaAmo4PIbLFEycIM1XSLK80TTNoTpA0QcoCMjU8X0YpdDJAtIOiioVNJDeQAtroVyFCGnXrm9ucXF5BUU95Cercro2n0wXJwdq17VXAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
-    ></span>
-    <img
-        class="gatsby-resp-image-image"
-        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
-        alt="checkov list screen"
-        title=""
-        src="/static/dddc26df5013c8b64808f3e6ae57759e/b9e4f/checkov-2.png"
-        srcset="/static/dddc26df5013c8b64808f3e6ae57759e/cf440/checkov-2.png 148w,
-/static/dddc26df5013c8b64808f3e6ae57759e/d2d38/checkov-2.png 295w,
-/static/dddc26df5013c8b64808f3e6ae57759e/b9e4f/checkov-2.png 590w,
-/static/dddc26df5013c8b64808f3e6ae57759e/f9b6a/checkov-2.png 885w,
-/static/dddc26df5013c8b64808f3e6ae57759e/2d849/checkov-2.png 1180w,
-/static/dddc26df5013c8b64808f3e6ae57759e/ca786/checkov-2.png 3359w"
-        sizes="(max-width: 590px) 100vw, 590px"
-      />
-  </span>
-  </a></p></article><hr/><ul class="project-page__PrevAndNext-mn9its-0 jDxbNf"><li><a rel="prev" href="/projects/curve/">← <!-- -->Curve</a></li><li><a rel="next" href="/projects/hindsite-trader/">HindSite Trader<!-- --> →</a></li></ul></main><footer class="footercss-fqsmgi-0 gQDKWj"><ul><li><a href="https://github.com/billybunn">GitHub</a></li><li><a href="https://www.linkedin.com/in/billybunn/">LinkedIn</a></li><li><a href="https://twitter.com/billybunn">Twitter</a></li></ul><p>© <!-- -->2019<!-- --> Billy Bunn</p></footer></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/projects/checkov/";window.webpackCompilationHash="16e3aabd4f9e18ff0c25";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-513e2783b7ef974d9da6.js"],"component---src-templates-project-page-js":["/component---src-templates-project-page-js-f255000582892cc2e1d1.js"],"component---src-templates-page-js":["/component---src-templates-page-js-7893d86bc3dee4b1b93e.js"],"component---src-pages-404-js":["/component---src-pages-404-js-88f700d9cbe123a3df65.js"],"component---src-pages-about-js":["/component---src-pages-about-js-8bf81a54916765f616e4.js"],"component---src-pages-contact-js":["/component---src-pages-contact-js-6f95ac7545f2aa59c848.js"],"component---src-pages-index-js":["/component---src-pages-index-js-0cacc95bf77b9730e9ea.js"],"component---src-pages-projects-js":["/component---src-pages-projects-js-a7e67aca82e9e1d1501e.js"]};/*]]>*/</script><script src="/component---src-templates-project-page-js-f255000582892cc2e1d1.js" async=""></script><script src="/0-fae90995efc464b023a3.js" async=""></script><script src="/app-513e2783b7ef974d9da6.js" async=""></script><script src="/webpack-runtime-2b88cb42babd12e93043.js" async=""></script></body></html>
+<p>It’s always fun looking back and laughing at old work, but I’m proud of what this small app represents in my journey as a developer.</p>
+<p><a href="https://github.com/abc-s/201-final-project">See the repository for the original on GitHub</a>.</p>
+<!-- ![checkov initial screen](./checkov-1.png)
+![checkov list screen](./checkov-2.png) --></article><hr/><ul class="project-page__PrevAndNext-mn9its-0 jDxbNf"><li><a rel="prev" href="/projects/curve/">← <!-- -->Curve</a></li><li><a rel="next" href="/projects/hindsite-trader/">HindSite Trader<!-- --> →</a></li></ul></main><footer class="footercss-fqsmgi-0 gQDKWj"><ul><li><a href="https://github.com/billybunn">GitHub</a></li><li><a href="https://www.linkedin.com/in/billybunn/">LinkedIn</a></li><li><a href="https://twitter.com/billybunn">Twitter</a></li></ul><p>© <!-- -->2019<!-- --> Billy Bunn</p></footer></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/projects/checkov/";window.webpackCompilationHash="16e3aabd4f9e18ff0c25";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-513e2783b7ef974d9da6.js"],"component---src-templates-project-page-js":["/component---src-templates-project-page-js-f255000582892cc2e1d1.js"],"component---src-templates-page-js":["/component---src-templates-page-js-7893d86bc3dee4b1b93e.js"],"component---src-pages-404-js":["/component---src-pages-404-js-88f700d9cbe123a3df65.js"],"component---src-pages-about-js":["/component---src-pages-about-js-8bf81a54916765f616e4.js"],"component---src-pages-contact-js":["/component---src-pages-contact-js-6f95ac7545f2aa59c848.js"],"component---src-pages-index-js":["/component---src-pages-index-js-0cacc95bf77b9730e9ea.js"],"component---src-pages-projects-js":["/component---src-pages-projects-js-a7e67aca82e9e1d1501e.js"]};/*]]>*/</script><script src="/component---src-templates-project-page-js-f255000582892cc2e1d1.js" async=""></script><script src="/0-fae90995efc464b023a3.js" async=""></script><script src="/app-513e2783b7ef974d9da6.js" async=""></script><script src="/webpack-runtime-2b88cb42babd12e93043.js" async=""></script></body></html>
