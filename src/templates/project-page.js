@@ -22,6 +22,7 @@ const ProjectPageLayout = styled(Layout)`
 const ProjectContent = styled.article`
   ul {
     list-style: disc;
+    margin-left: 1.5em;
   }
   strong {
     font-weight: 600;
@@ -49,7 +50,6 @@ const ProjectPageTemplate = props => {
   const headerImg = post.frontmatter.image
     ? post.frontmatter.image.childImageSharp.fluid.originalImg
     : null
-  // console.log(post.frontmatter)
   const { previous, next } = props.pageContext
 
   return (
