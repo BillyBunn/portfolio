@@ -18,10 +18,10 @@ export default props => {
 
   return (
     <Layout>
-      <h2>Look what I can do</h2>
+      <h2>Check out some of my work</h2>
       <p>
-        Here's some of my work. You can click on the title to read more details
-        about the project or view the source code.
+        Here you'll find a few of my projects. You can click on the title to
+        read more details about the project or view the source code.
       </p>
       <TabFilter tags={allTags}>
         {posts.map(({ node }) => {
@@ -30,12 +30,7 @@ export default props => {
           const tags = node.frontmatter.tags.split(", ")
           const path = "/" + node.fields.collection + node.fields.slug
           return (
-            <TabFilterItem
-              title={title}
-              link={path}
-              tags={tags}
-              key={path}
-            >
+            <TabFilterItem title={title} link={path} tags={tags} key={path}>
               {description}
             </TabFilterItem>
           )
