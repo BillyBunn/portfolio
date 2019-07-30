@@ -20,6 +20,9 @@ const ProjectPageLayout = styled(Layout)`
 `
 
 const ProjectContent = styled.article`
+  img {
+    margin-top: 1em;
+  }
   ul {
     list-style: disc;
     margin-left: 1.5em;
