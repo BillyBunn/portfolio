@@ -5,19 +5,22 @@ import posed from 'react-pose';
 import { Container } from './header.css';
 import Title from 'components/title';
 import Nav from 'components/header/nav';
+import { accent } from '../../constants/theme';
 
 // Example of a component-specific page transition
 const AnimatedContainer = posed.div({
   enter: {
     y: 0,
     transition: {
-      ease: 'easeInOut',
+      type: 'spring',
+      stiffness: 250,
+      damping: 15,
     },
   },
   exit: {
     y: '-100%',
     transition: {
-      ease: 'easeInOut',
+      type: 'spring',
     },
   },
 });
@@ -25,7 +28,7 @@ const AnimatedContainer = posed.div({
 const Header = ({ title }) => (
   <AnimatedContainer>
     <Container>
-      <Link to="/">
+      <Link to="/" activeStyle={{ color: accent }}>
         <Title as="h1">{title}</Title>
       </Link>
 
