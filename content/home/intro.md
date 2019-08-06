@@ -1,1 +1,1 @@
-I'm a software developer building modern user experiences on the web with thoughtful, clean code.
+I build modern websites and apps with thoughtful, clean code.

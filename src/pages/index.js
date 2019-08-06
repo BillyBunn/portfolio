@@ -11,6 +11,9 @@ import { graphql } from 'gatsby';
 const Index = ({ data }) => (
   <Layout>
     <Box>
+      <Title as="h2" size="xl">
+        Hello, <br/>I’m Billy Bunn.
+      </Title>
       <Title as="h2" size="large">
         {data.homeJson.content.childMarkdownRemark.rawMarkdownBody}
       </Title>
