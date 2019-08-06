@@ -6,18 +6,26 @@ import Title from 'components/title';
 import Gallery from 'components/gallery';
 import IOExample from 'components/io-example';
 import Modal from 'containers/modal';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 
-const Index = ({ data }) => (
-  <Layout>
-    <Box>
-      <Title as="h2" size="xl">
-        Hello, <br/>I’m Billy Bunn.
-      </Title>
-      <Title as="h2" size="large">
-        {data.homeJson.content.childMarkdownRemark.rawMarkdownBody}
-      </Title>
-      <Modal>
+import { Button } from '../components/modal/modal.css';
+
+const Index = ({ data }) => {
+  const galleryData = data.allMarkdownRemark.edges.reduce((acc, edge) => {
+    acc.push(edge.node.frontmatter);
+    return acc;
+  }, []);
+  return (
+    <Layout>
+      <Box>
+        <Title as="h2" size="xl">
+          Hello, <br />
+          I’m Billy Bunn.
+        </Title>
+        <Title as="h2" size="large">
+          {data.homeJson.content.childMarkdownRemark.rawMarkdownBody}
+        </Title>
+        {/* <Modal>
         <video
           src="https://i.imgur.com/gzFqNSW.mp4"
           playsInline
@@ -25,13 +33,20 @@ const Index = ({ data }) => (
           autoPlay
           muted
         />
-      </Modal>
-    </Box>
-    <Gallery items={data.homeJson.gallery} />
-    <div style={{ height: '50vh' }} />
-    <IOExample />
-  </Layout>
-);
+      </Modal> */}
+      </Box>
+      <Box fluid>
+        <Title as="h3" size="medium">Here’s some of my latest work</Title>
+        <Gallery items={galleryData} />
+        <Button onClick={() => navigate('/projects')}>
+          See more of my work
+        </Button>
+      </Box>
+      <div style={{ height: '50vh' }} />
+      <IOExample />
+    </Layout>
+  );
+};
 
 Index.propTypes = {
   data: PropTypes.object.isRequired,
@@ -56,6 +71,32 @@ export const query = graphql`
           childImageSharp {
             fluid(maxHeight: 500, quality: 90) {
               ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+
+    allMarkdownRemark(
+      limit: 3
+      filter: { frontmatter: { title: { ne: "" } } }
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            date
+            description
+            image {
+              childImageSharp {
+                fluid(maxHeight: 500, quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
             }
           }
         }
