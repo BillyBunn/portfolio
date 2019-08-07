@@ -4,14 +4,19 @@ export const Container = styled.nav`
   ul {
     display: flex;
     list-style: none;
-    padding: 0;
 
     li {
-      text-transform: uppercase;
       font-size: 1.3rem;
+      text-transform: uppercase;
 
       & + li {
-        margin-left: 2rem;
+        /* margin-left: 2rem; */
+      }
+
+      a {
+        background: transparent;
+        display: inline-block;
+        padding: 4rem 2rem;
       }
     }
   }
