@@ -18,7 +18,7 @@ const Item = ({ title, description, image }) => {
 
 Item.propTypes = {
   title: PropTypes.string,
-  copy: PropTypes.string,
+  description: PropTypes.string,
   image: PropTypes.object.isRequired,
 };
 

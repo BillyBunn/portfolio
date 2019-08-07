@@ -4,19 +4,64 @@ import { graphql } from 'gatsby';
 import Layout from 'components/layout';
 import Box from 'components/box';
 import Head from 'components/head';
+import Gallery from 'components/gallery';
+import Filter from 'components/filter';
 
-const Projects = ({ data }) => (
-  <Layout>
-    <Head pageTitle={data.projectsJson.title} />
-    <Box>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: data.projectsJson.content.childMarkdownRemark.html,
-        }}
-      />
-    </Box>
-  </Layout>
-);
+const Projects = ({ data }) => {
+  const allProjects = data.allMarkdownRemark.edges.reduce((acc, edge) => {
+    acc.push(edge.node.frontmatter);
+    return acc;
+  }, []);
+
+  const tags = data.allMarkdownRemark.edges
+    .reduce((acc, edge) => {
+      let projectTags = edge.node.frontmatter.tags.split(', ');
+      return acc.concat(projectTags);
+    }, [])
+    .filter((val, idx, arr) => arr.indexOf(val) === idx);
+
+  const defaultTag = 'All';
+  const [currentTag, setCurrentTag] = React.useState(defaultTag);
+
+  const [selectedProjects, setSelectedProjects] = React.useState(allProjects);
+  const filterGallery = () => {
+    // console.log('filterGallery', currentTag);
+    if (currentTag === defaultTag) return setSelectedProjects(allProjects);
+
+    const filteredData = selectedProjects.filter(item =>
+      item.tags.includes(currentTag)
+    );
+    // console.log({ filteredData });
+    setSelectedProjects(filteredData);
+  };
+
+  return (
+    <Layout>
+      <Head pageTitle="Projects" />
+      <Box fluid>
+        <Filter
+          tags={tags}
+          defaultTag={defaultTag}
+          currentTag={currentTag}
+          setCurrentTag={tag => {
+            console.log({ tag }, {currentTag});
+            setCurrentTag(tag);
+            console.log({ tag }, {currentTag});
+            filterGallery();
+          }}
+        />
+      </Box>
+      <Box>
+        {/* <div
+          dangerouslySetInnerHTML={{
+            __html: data.projectsJson.content.childMarkdownRemark.html,
+          }}
+        /> */}
+        <Gallery items={selectedProjects} />
+      </Box>
+    </Layout>
+  );
+};
 
 Projects.propTypes = {
   data: PropTypes.object.isRequired,
@@ -26,13 +71,47 @@ export default Projects;
 
 export const query = graphql`
   query ProjectsQuery {
-    projectsJson {
-      title
-      content {
-        childMarkdownRemark {
-          html
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { title: { ne: "" } } }
+    ) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+            path
+            collection
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            description
+            source
+            tags
+            image {
+              childImageSharp {
+                fluid(maxHeight: 500, quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
         }
       }
     }
   }
 `;
+
+// export const query = graphql`
+//   query ProjectsQuery {
+//     projectsJson {
+//       title
+//       content {
+//         childMarkdownRemark {
+//           html
+//         }
+//       }
+//     }
+//   }
+// `;

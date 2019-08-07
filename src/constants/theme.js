@@ -2,6 +2,7 @@ export const accent = '#2dd5c9'; // turquoise
 export const primary = '#1A222C'; // black
 export const primaryLight = '#313842';
 export const secondary = '#f5f5f5'; // white
+export const secondaryLight = '#ddd'; // grey
 
 // /* Colors */
 // ${'' /* --primary: #202020;  */}

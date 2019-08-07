@@ -5,7 +5,7 @@ import Box from 'components/box';
 import Title from 'components/title';
 import Gallery from 'components/gallery';
 import IOExample from 'components/io-example';
-import Modal from 'containers/modal';
+// import Modal from 'containers/modal';
 import { graphql, navigate } from 'gatsby';
 
 import { Button } from '../components/modal/modal.css';
@@ -36,7 +36,9 @@ const Index = ({ data }) => {
       </Modal> */}
       </Box>
       <Box fluid>
-        <Title as="h3" size="medium">Here’s some of my latest work</Title>
+        <Title as="h3" size="medium">
+          Here’s some of my latest work
+        </Title>
         <Gallery items={galleryData} />
         <Button onClick={() => navigate('/projects')}>
           See more of my work
