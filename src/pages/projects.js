@@ -6,6 +6,7 @@ import Box from 'components/box';
 import Head from 'components/head';
 import Gallery from 'components/gallery';
 import Filter from 'components/filter';
+import Title from 'components/title';
 
 const Projects = ({ data }) => {
   const allProjects = data.allMarkdownRemark.edges.reduce((acc, edge) => {
@@ -40,6 +41,13 @@ const Projects = ({ data }) => {
   return (
     <Layout>
       <Head pageTitle="Projects" />
+      <Box>
+        <Title as="h3" size="medium">
+          A handful of my projects. Filter by technologies used in building
+          them.
+        </Title>
+      </Box>
+
       <Box fluid>
         <Filter
           tags={tags}
