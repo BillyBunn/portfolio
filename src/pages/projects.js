@@ -10,13 +10,13 @@ import Title from 'components/title';
 
 const Projects = ({ data }) => {
   const allProjects = data.allMarkdownRemark.edges.reduce((acc, edge) => {
-    acc.push(edge.node.frontmatter);
+    acc.push({ ...edge.node.frontmatter, path: edge.node.fields.path });
     return acc;
   }, []);
 
-  const tags = data.allMarkdownRemark.edges
-    .reduce((acc, edge) => {
-      let projectTags = edge.node.frontmatter.tags.split(', ');
+  const tags = allProjects
+    .reduce((acc, project) => {
+      let projectTags = project.tags.split(', ');
       return acc.concat(projectTags);
     }, [])
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
@@ -69,7 +69,7 @@ Projects.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default Projects;
+export default React.memo(Projects);
 
 export const query = graphql`
   query ProjectsQuery {

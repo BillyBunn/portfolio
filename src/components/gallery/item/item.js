@@ -6,10 +6,10 @@ import posed from 'react-pose';
 
 import { Title, Copy, StyledFigure } from './item.css';
 
-const Item = ({ title, description, image, clickable }) => {
+const Item = ({ title, description, image, path, clickable }) => {
   const Container = clickable ? LinkCard : Card;
   return (
-    <Container>
+    <Container path={path}>
       <Img fluid={image ? image.childImageSharp.fluid : {}} alt={title} />
       <figcaption>
         <Title>{title}</Title>
@@ -33,10 +33,11 @@ Card.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-const LinkCard = ({ children }) => {
+const LinkCard = ({ children, path }) => {
   const PosedCard = posed(StyledFigure)({
     hoverable: true,
     init: {
+      x: 0,
       y: 0,
       boxShadow: '0px 0px 0px 0px #000000, 0px 0px 7px 1px rgba(0,0,0,0.26)',
       transition: {
@@ -56,7 +57,7 @@ const LinkCard = ({ children }) => {
     },
   });
 
-  return <PosedCard onClick={() => navigate('/')}>{children}</PosedCard>;
+  return <PosedCard onClick={() => navigate(`/${path}`)}>{children}</PosedCard>;
 };
 
 LinkCard.propTypes = {

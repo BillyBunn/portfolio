@@ -22,6 +22,6 @@ export const StyledFigure = styled.figure`
   cursor: pointer;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 1rem;
 `;
