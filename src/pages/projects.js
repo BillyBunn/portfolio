@@ -10,7 +10,7 @@ import Title from 'components/title';
 
 const Projects = ({ data }) => {
   const allProjects = data.allMarkdownRemark.edges.reduce((acc, edge) => {
-    acc.push({ ...edge.node.frontmatter, path: edge.node.fields.path });
+    acc.push({ ...edge.node.frontmatter, path: edge.node.fields.slug });
     return acc;
   }, []);
 
@@ -82,8 +82,8 @@ export const query = graphql`
           excerpt
           fields {
             slug
-            path
-            collection
+            # path
+            # collection
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
@@ -104,16 +104,3 @@ export const query = graphql`
     }
   }
 `;
-
-// export const query = graphql`
-//   query ProjectsQuery {
-//     projectsJson {
-//       title
-//       content {
-//         childMarkdownRemark {
-//           html
-//         }
-//       }
-//     }
-//   }
-// `;

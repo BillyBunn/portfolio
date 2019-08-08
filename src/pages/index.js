@@ -5,14 +5,13 @@ import Box from 'components/box';
 import Title from 'components/title';
 import Gallery from 'components/gallery';
 import IOExample from 'components/io-example';
-// import Modal from 'containers/modal';
 import { graphql, navigate } from 'gatsby';
 
 import { Button } from '../components/modal/modal.css';
 
 const Index = ({ data }) => {
   const galleryData = data.allMarkdownRemark.edges.reduce((acc, edge) => {
-    acc.push(edge.node.frontmatter);
+    acc.push({ ...edge.node.frontmatter, path: edge.node.fields.slug });
     return acc;
   }, []);
   return (
@@ -25,21 +24,12 @@ const Index = ({ data }) => {
         <Title as="h2" size="large">
           {data.homeJson.content.childMarkdownRemark.rawMarkdownBody}
         </Title>
-        {/* <Modal>
-        <video
-          src="https://i.imgur.com/gzFqNSW.mp4"
-          playsInline
-          loop
-          autoPlay
-          muted
-        />
-      </Modal> */}
       </Box>
       <Box fluid>
         <Title as="h3" size="medium">
           Here’s some of my latest work
         </Title>
-        <Gallery items={galleryData} />
+        <Gallery items={galleryData} clickable />
         <Button onClick={() => navigate('/projects')}>
           See more of my work
         </Button>
