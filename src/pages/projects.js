@@ -25,15 +25,17 @@ const Projects = ({ data }) => {
 
   const [selectedProjects, setSelectedProjects] = React.useState(allProjects);
   const filterGallery = () => {
-    // console.log('filterGallery', currentTag);
     if (currentTag === defaultTag) return setSelectedProjects(allProjects);
 
-    const filteredData = selectedProjects.filter(item =>
+    const filteredData = allProjects.filter(item =>
       item.tags.includes(currentTag)
     );
-    // console.log({ filteredData });
     setSelectedProjects(filteredData);
   };
+
+  React.useEffect(() => {
+    filterGallery();
+  }, [currentTag]);
 
   return (
     <Layout>
@@ -43,12 +45,7 @@ const Projects = ({ data }) => {
           tags={tags}
           defaultTag={defaultTag}
           currentTag={currentTag}
-          setCurrentTag={tag => {
-            console.log({ tag }, {currentTag});
-            setCurrentTag(tag);
-            console.log({ tag }, {currentTag});
-            filterGallery();
-          }}
+          setCurrentTag={tag => setCurrentTag(tag)}
         />
       </Box>
       <Box>

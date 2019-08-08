@@ -38,11 +38,14 @@ export const TagButton = styled.button`
   transition: 0.2s background-color ease;
 
   &:active,
-  &:focus,
+  /* &:focus, */
   &:hover {
     background-color: ${({ current }) => (!current ? secondary : null)};
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.03);
     color: ${({ current }) => (!current ? primaryLight : null)};
+    outline: none;
+  }
+  &:focus {
     outline: none;
   }
 `;
