@@ -16,3 +16,12 @@ export const Copy = styled.p`
     margin-bottom: 4rem;
   `};
 `;
+
+export const StyledFigure = styled.figure`
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  padding: 1rem;
+`;

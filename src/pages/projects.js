@@ -43,8 +43,7 @@ const Projects = ({ data }) => {
       <Head pageTitle="Projects" />
       <Box>
         <Title as="h3" size="medium">
-          A handful of my projects. Filter by technologies used in building
-          them.
+          A handful of my projects. Filter by technologies used.
         </Title>
       </Box>
 
@@ -55,14 +54,12 @@ const Projects = ({ data }) => {
           currentTag={currentTag}
           setCurrentTag={tag => setCurrentTag(tag)}
         />
-      </Box>
-      <Box>
         {/* <div
           dangerouslySetInnerHTML={{
             __html: data.projectsJson.content.childMarkdownRemark.html,
           }}
         /> */}
-        <Gallery items={selectedProjects} />
+        <Gallery items={selectedProjects} clickable />
       </Box>
     </Layout>
   );
