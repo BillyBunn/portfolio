@@ -1,5 +1,4 @@
-I'm a software developer based in Seattle, WA with a professional
-background in finance.
+#### I'm a software developer based in Seattle, WA with a professional background in finance.
 
 Currently, I make full-stack applications with modern tools and libraries.
 I've built things with React, Node, Express, MongoDB, and more. You can

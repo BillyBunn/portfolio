@@ -14,7 +14,7 @@ import {
   secondaryLight,
 } from '../constants/theme';
 
-const Content = styled.article`
+export const Content = styled.article`
   line-height: 1.4;
 
   h1,
