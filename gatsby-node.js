@@ -54,6 +54,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 //           next,
 //         },
 //       });
+
 //     });
 
 //     // Non-project pages
@@ -114,18 +115,26 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `
   ).then(result => {
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      if (node.fields && node.fields.slug) {
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve(`./src/templates/page.js`),
-          context: {
-            // Data passed to context is available
-            // in page queries as GraphQL variables.
-            slug: node.fields.slug,
-          },
-        });
-      }
+    const projectPages = result.data.allMarkdownRemark.edges.filter(
+      edge => edge.node.fields && edge.node.fields.slug
+    );
+
+    projectPages.forEach((page, idx) => {
+      const previous =
+        idx === projectPages.length - 1 ? null : projectPages[idx + 1].node;
+      const next = idx === 0 ? null : projectPages[idx - 1].node;
+      const filePath = page.node.fields.slug;
+
+      createPage({
+        path: filePath,
+        component: path.resolve(`./src/templates/page.js`),
+        context: {
+          slug: page.node.fields.slug,
+          collection: page.node.fields.collection,
+          previous,
+          next,
+        },
+      });
     });
   });
 };

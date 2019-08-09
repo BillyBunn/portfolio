@@ -19,5 +19,4 @@ Gallery.propTypes = {
   clickable: PropTypes.bool,
 };
 
-// export default React.memo(Gallery);
 export default Gallery;
