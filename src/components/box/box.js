@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './box.css';
 
-const Box = ({ children, fluid }) => {
-  return <Container fluid={fluid}>{children}</Container>;
+const Box = ({ children, fluid, centered }) => {
+  return (
+    <Container fluid={fluid} centered={centered}>
+      {children}
+    </Container>
+  );
 };
 
 Box.propTypes = {

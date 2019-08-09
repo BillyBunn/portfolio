@@ -7,13 +7,61 @@ import Layout from 'components/layout';
 import Box from 'components/box';
 import Head from 'components/head';
 import Title from 'components/title';
+import {
+  primary,
+  primaryLight,
+  secondary,
+  secondaryLight,
+} from '../constants/theme';
 
-const PrevAndNext = styled.ul`
-  display: flex;
-  flexwrap: wrap;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
+// const ContentBox = styled(Box)`
+//   margin: 0 auto;
+// `;
+
+const PrevAndNext = styled.div`
+  width: 100%;
+  ul {
+    background: ${secondaryLight};
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+`;
+
+export const ButtonLink = styled(Link)`
+  -webkit-appearance: none;
+  background-color: ${secondary};
+  border-radius: 5px;
+  border: none;
+  color: #757575;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.2s background-color ease;
+
+  &:active,
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+    outline: none;
+  }
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
+
+  & + & {
+    margin-left: 1rem;
+  }
 `;
 
 // eslint-disable-next-line react/display-name
@@ -25,46 +73,46 @@ export default ({ data, pageContext }) => {
   return (
     <Layout>
       <Head pageTitle={title} />
-      <Box>
+      <Box centered>
         <Title as="h3" size="medium">
           {title}
         </Title>
-
-        <a href={source}>View source code on GitHub</a>
-        <p>{date}</p>
-
-        <Img fluid={image ? image.childImageSharp.fluid : {}} alt={title} />
-
-        {/* {post.frontmatter.image ? (
-          <img
-            className="headerImg"
-            src={post.frontmatter.image}
-            alt="project logo"
+        <Title as="h4" size="small">
+          {date}
+        </Title>
+        <a href={source}>View on GitHub</a>
+        <div style={{ maxHeight: '400px', height: '400px' }}>
+          <Img
+            style={{ maxHeight: '100%' }}
+            imgStyle={{ objectFit: 'contain' }}
+            fluid={image ? image.childImageSharp.fluid : {}}
+            alt={title}
           />
-        ) : null} */}
-      </Box>
-      <Box>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </Box>
 
-      <Box>
-        <PrevAndNext>
+      {/* <Box fluid> */}
+      <PrevAndNext>
+        <ul>
           <li>
             {previous && (
-              <Link to={`${previous.fields.slug}`} rel="prev">
+              <ButtonLink to={`${previous.fields.slug}`} rel="prev">
                 ← {previous.frontmatter.title}
-              </Link>
+              </ButtonLink>
             )}
           </li>
+          <li>Browse more projects</li>
           <li>
             {next && (
-              <Link to={`${next.fields.slug}`} rel="next">
+              <ButtonLink to={`${next.fields.slug}`} rel="next">
                 {next.frontmatter.title} →
-              </Link>
+              </ButtonLink>
             )}
           </li>
-        </PrevAndNext>
-      </Box>
+        </ul>
+      </PrevAndNext>
+      {/* </Box> */}
     </Layout>
   );
 };
@@ -81,8 +129,8 @@ export const query = graphql`
         source
         image {
           childImageSharp {
-            fluid {
-              originalImg
+            fluid(maxHeight: 500, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
