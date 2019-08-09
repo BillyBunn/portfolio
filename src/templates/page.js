@@ -8,6 +8,7 @@ import Box from 'components/box';
 import Head from 'components/head';
 import Title from 'components/title';
 import {
+  accent,
   primary,
   primaryLight,
   secondary,
@@ -39,6 +40,49 @@ export const Content = styled.article`
   }
   strong {
     font-weight: 600;
+  }
+
+  code {
+    padding: 0.2rem 0.3rem;
+    background: ${secondary};
+    font-size: 85%;
+    line-height: 1.45;
+    border-radius: 3px;
+    color: ${primaryLight};
+    border: 1px solid #ddd;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+      monospace;
+  }
+  a {
+    > code {
+      color: ${accent};
+      border: none;
+      background: transparent;
+    }
+  }
+
+  pre {
+    display: block;
+    padding: 2rem;
+    margin-top: 4rem;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    border-radius: 5px;
+    color: ${accent};
+    border: 1px solid #ddd;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+      monospace;
+
+    > code {
+      padding: 0;
+      background: transparent;
+      font-size: 100%;
+      line-height: 1.45;
+      border-radius: 0px;
+      color: inherit;
+      border: none;
+    }
   }
 `;
 
