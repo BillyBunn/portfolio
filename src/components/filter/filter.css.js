@@ -4,7 +4,6 @@ import {
   primaryLight,
   secondary,
   secondaryLight,
-  accent,
 } from '../../constants/theme';
 
 export const List = styled.ul`
@@ -14,9 +13,6 @@ export const List = styled.ul`
 
   li {
     margin: 0.5rem;
-    /* & + li {
-      margin-left: 1rem;
-    } */
   }
 `;
 
@@ -38,7 +34,6 @@ export const TagButton = styled.button`
   transition: 0.2s background-color ease;
 
   &:active,
-  /* &:focus, */
   &:hover {
     background-color: ${({ current }) => (!current ? secondary : null)};
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.03);

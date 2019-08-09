@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List, TagButton } from './filter.css';
 const Filter = ({ tags, defaultTag, currentTag, setCurrentTag }) => {
   const initTag = defaultTag || tags[0];
@@ -31,3 +32,10 @@ const Filter = ({ tags, defaultTag, currentTag, setCurrentTag }) => {
 };
 
 export default Filter;
+
+Filter.propTypes = {
+  tags: PropTypes.array.isRequired,
+  defaultTag: PropTypes.string,
+  currentTag: PropTypes.string.isRequired,
+  setCurrentTag: PropTypes.func.isRequired,
+};

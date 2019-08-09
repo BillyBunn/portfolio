@@ -23,6 +23,7 @@ Item.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.object.isRequired,
+  path: PropTypes.string,
   clickable: PropTypes.bool,
 };
 
@@ -62,4 +63,5 @@ const LinkCard = ({ children, path }) => {
 
 LinkCard.propTypes = {
   children: PropTypes.element.isRequired,
+  path: PropTypes.string.isRequired,
 };

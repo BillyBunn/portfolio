@@ -7,7 +7,7 @@ import { Container } from './gallery.css';
 const Gallery = ({ items, clickable }) => {
   return (
     <Container>
-      {items.map((item, i) => (
+      {items.map(item => (
         <Item {...item} key={uuid.v4()} clickable={clickable} />
       ))}
     </Container>
