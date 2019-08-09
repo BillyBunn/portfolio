@@ -14,9 +14,33 @@ import {
   secondaryLight,
 } from '../constants/theme';
 
-// const ContentBox = styled(Box)`
-//   margin: 0 auto;
-// `;
+const Content = styled.article`
+  line-height: 1.4;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-size: 110%;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  img {
+    margin-top: 1em;
+  }
+  ul {
+    list-style: disc;
+    margin-left: 1.5em;
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+  strong {
+    font-weight: 600;
+  }
+`;
 
 const PrevAndNext = styled.div`
   width: 100%;
@@ -74,14 +98,18 @@ export default ({ data, pageContext }) => {
     <Layout>
       <Head pageTitle={title} />
       <Box centered>
-        <Title as="h3" size="medium">
-          {title}
-        </Title>
-        <Title as="h4" size="small">
-          {date}
-        </Title>
-        <a href={source}>View on GitHub</a>
-        <div style={{ maxHeight: '400px', height: '400px' }}>
+        <div style={{ marginBottom: '1rem' }}>
+          <Title as="h3" size="medium">
+            {title}
+          </Title>
+          <Title as="h4" size="small">
+            {date}
+          </Title>
+          <a href={source}>View on GitHub</a>
+        </div>
+        <div
+          style={{ height: '400px', maxHeight: '400px', margin: '1.5rem 0' }}
+        >
           <Img
             style={{ maxHeight: '100%' }}
             imgStyle={{ objectFit: 'contain' }}
@@ -89,7 +117,7 @@ export default ({ data, pageContext }) => {
             alt={title}
           />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <Content dangerouslySetInnerHTML={{ __html: post.html }} />
       </Box>
 
       {/* <Box fluid> */}
