@@ -29,7 +29,9 @@ const Header = ({ title }) => (
   <AnimatedContainer>
     <Container>
       <Link to="/" activeStyle={{ color: accent }}>
-        <Title as="h1">{title}</Title>
+        <Title as="h1" size="large">
+          {title}
+        </Title>
       </Link>
 
       <Nav />

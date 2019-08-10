@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { accent, primaryLight, secondaryLight } from 'constants/theme';
 
-export const Container = styled.div`
+export const Container = styled.footer`
   background: ${primaryLight};
   color: ${secondaryLight};
   padding: 2rem 4rem;
@@ -9,6 +9,7 @@ export const Container = styled.div`
   position: relative;
   text-align: center;
   transition: background-color 0.3s ease;
+
   ul {
     display: flex;
     list-style: none;

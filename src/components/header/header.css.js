@@ -13,6 +13,7 @@ export const Container = styled.header`
     text-decoration: none;
     transition: color 0.2s ease;
     h1 {
+      padding: 2rem 0;
       &:hover {
         color: ${accent};
       }

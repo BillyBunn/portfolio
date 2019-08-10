@@ -47,7 +47,7 @@ const charPoses = {
 };
 
 const Footer = () => (
-  <IO rootMargin="-30px">
+  <IO as="footer" rootMargin="-30px">
     {({ isVisible, hasBeenVisible }) => (
       <AnimatedContainer
         isVisible={isVisible}
