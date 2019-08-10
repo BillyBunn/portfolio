@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { accent, secondaryLight } from 'constants/theme';
+import { accent, primaryLight, secondaryLight } from 'constants/theme';
 
 export const Container = styled.div`
+  background: ${primaryLight};
   color: ${secondaryLight};
   padding: 2rem 4rem;
-  margin: 3rem 0 0 0;
+  margin: 1rem 0 0 0;
   position: relative;
   text-align: center;
   transition: background-color 0.3s ease;

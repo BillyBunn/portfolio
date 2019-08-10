@@ -29,7 +29,13 @@ export const Content = styled.article`
   }
 
   img {
-    margin-top: 1em;
+    /* margin: 3rem 0rem; */
+    /* padding: 3rem 0rem; */
+  }
+
+  .gatsby-resp-image-link {
+    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.26);
+    margin: 2rem 0rem;
   }
   ul {
     list-style: disc;
@@ -92,8 +98,8 @@ const PrevAndNext = styled.div`
   padding: 1rem 0;
   width: 100%;
   p {
+    margin: 1rem auto 2rem auto;
     text-align: center;
-    margin: 1rem auto;
   }
   ul {
     display: flex;

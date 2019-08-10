@@ -9,19 +9,16 @@ import { accent, primary, primaryLight } from 'constants/theme';
 
 const AnimatedContainer = posed(Container)({
   start: {
-    y: '25%',
-    backgroundColor: accent,
-    transition: {
-      type: 'spring',
-    },
+    y: '2rem',
   },
   end: {
     y: 0,
-    backgroundColor: primaryLight,
     transition: {
       type: 'spring',
       stiffness: 250,
       damping: 15,
+      // duration: 200,
+      round: true
     },
   },
 });
@@ -50,11 +47,11 @@ const charPoses = {
 };
 
 const Footer = () => (
-  <IO rootMargin="-100px">
+  <IO rootMargin="-30px">
     {({ isVisible, hasBeenVisible }) => (
       <AnimatedContainer
-        // isVisible={isVisible}
-        pose={hasBeenVisible || isVisible ? 'end' : 'start'}
+        isVisible={isVisible}
+        pose={isVisible ? 'end' : 'start'}
       >
         <ul>
           <li>
