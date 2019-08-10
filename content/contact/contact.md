@@ -4,6 +4,7 @@ I'm always happy to meet new faces and talk about code. Feel free to reach out a
 <br/><br/>
 
 
-- <a href="mailto:billy@billybunn.com?subject=Inquiry from BillyBunn.com">Send me an email</a>
-- <a href="https://www.linkedin.com/in/billybunn/">Connect with me on LinkedIn</a>
-- <a href="https://twitter.com/billybunn">Tweet at me</a>
+- [Send me an email](mailto:billy@billybunn.com?subject=Inquiry from BillyBunn.com")
+- [Connect with me on LinkedIn](https://www.linkedin.com/in/billybunn/)
+- [Check out my GitHub](https://github.com/billybunn)
+- [Tweet at me](https://twitter.com/billybunn)

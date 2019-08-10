@@ -29,8 +29,10 @@ export default createGlobalStyle`
     display: block;
   }
 
-  html {
+  html, body {
     font-size: 62.5%;
+    ${'' /* display: flex;
+    width: 100vw; */}
   }
 
   body {

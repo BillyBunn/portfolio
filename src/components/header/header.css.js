@@ -7,13 +7,12 @@ export const Container = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 0 0 0 4rem;
-
   a {
     color: ${secondary};
     text-decoration: none;
     transition: color 0.2s ease;
     h1 {
-      padding: 2rem 0;
+      /* padding: 2rem 0; */
       &:hover {
         color: ${accent};
       }

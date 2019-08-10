@@ -8,7 +8,6 @@ import { Title, Copy, StyledFigure } from './item.css';
 
 const Item = ({ title, description, image, path, clickable }) => {
   const Container = clickable ? LinkCard : Card;
-  console.log({ image });
   return (
     <Container path={path}>
       <Img fluid={image ? image.childImageSharp.fluid : {}} alt={title} />

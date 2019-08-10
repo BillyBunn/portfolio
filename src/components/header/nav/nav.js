@@ -56,9 +56,9 @@ const Nav = () => (
           Contact
         </PosedGatsbyLink>
       </PosedLi>
-      <PosedLi>
-        <PosedLink href="https://github.com/billybunn">GitHub</PosedLink>
-      </PosedLi>
+      {/* <PosedLi>
+        <PosedGatsbyLink href="https://github.com/billybunn">GitHub</PosedGatsbyLink>
+      </PosedLi> */}
     </ul>
   </Container>
 );

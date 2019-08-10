@@ -34,7 +34,7 @@ const Index = ({ data }) => {
           See more of my work
         </Button>
       </Box>
-      <div style={{ height: '50vh' }} />
+      <div style={{ height: '25vh' }} />
       {/* <IOExample /> */}
     </Layout>
   );

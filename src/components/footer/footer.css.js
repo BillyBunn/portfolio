@@ -27,7 +27,7 @@ export const Container = styled.footer`
       a {
         display: inline-block;
         font-weight: 600;
-        padding: 4rem 2rem;
+        padding: 4rem 0;
         text-decoration: none;
       }
     }
