@@ -1,58 +1,89 @@
-import React from "react"
-import { graphql } from "gatsby"
-import { TabFilter, TabFilterItem } from "components/tab-filter"
-import Layout from "components/layout"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import Layout from 'components/layout';
+import Box from 'components/box';
+import Head from 'components/head';
+import Gallery from 'components/gallery';
+import Filter from 'components/filter';
+import Title from 'components/title';
 
-export default props => {
-  const { data } = props
-  // const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
-  let edges = data.allMarkdownRemark.edges
+const Projects = ({ data }) => {
+  const allProjects = data.allMarkdownRemark.edges.reduce((acc, edge) => {
+    acc.push({ ...edge.node.frontmatter, path: edge.node.fields.slug });
+    return acc;
+  }, []);
 
-  let allTags = edges
-    .reduce((acc, edge, idx) => {
-      let projectTags = edge.node.frontmatter.tags.split(", ")
-      return acc.concat(projectTags)
+  const tags = allProjects
+    .reduce((acc, project) => {
+      let projectTags = project.tags.split(', ');
+      return acc.concat(projectTags);
     }, [])
-    .filter((val, idx, arr) => arr.indexOf(val) === idx)
+    .filter((val, idx, arr) => arr.indexOf(val) === idx);
+
+  const defaultTag = 'All';
+  const [currentTag, setCurrentTag] = React.useState(defaultTag);
+
+  const [selectedProjects, setSelectedProjects] = React.useState(allProjects);
+  const filterGallery = () => {
+    if (currentTag === defaultTag) return setSelectedProjects(allProjects);
+
+    const filteredData = allProjects.filter(item =>
+      item.tags.includes(currentTag)
+    );
+    setSelectedProjects(filteredData);
+  };
+
+  React.useEffect(() => {
+    filterGallery();
+  }, [currentTag]);
 
   return (
     <Layout>
-      <h2>Check out some of my work</h2>
-      <p>
-        Here you'll find a few of my projects. You can click on the title to
-        read more details about the project or view the source code.
-      </p>
-      <TabFilter tags={allTags}>
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          const description = node.frontmatter.description || node.excerpt
-          const tags = node.frontmatter.tags.split(", ")
-          const path = "/" + node.fields.collection + node.fields.slug
-          return (
-            <TabFilterItem title={title} link={path} tags={tags} key={path}>
-              {description}
-            </TabFilterItem>
-          )
-        })}
-      </TabFilter>
-    </Layout>
-  )
-}
+      <Head pageTitle="Projects" />
+      <Box>
+        <Title as="h3" size="medium">
+          A handful of my projects. Filter by technologies used.
+        </Title>
+      </Box>
 
-export const pageQuery = graphql`
-  query {
+      <Box fluid>
+        <Filter
+          tags={tags}
+          defaultTag={defaultTag}
+          currentTag={currentTag}
+          setCurrentTag={tag => setCurrentTag(tag)}
+        />
+        {/* <div
+          dangerouslySetInnerHTML={{
+            __html: data.projectsJson.content.childMarkdownRemark.html,
+          }}
+        /> */}
+        <Gallery items={selectedProjects} clickable />
+      </Box>
+    </Layout>
+  );
+};
+
+Projects.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+export default React.memo(Projects);
+
+export const query = graphql`
+  query ProjectsQuery {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fields: { collection: { eq: "projects" } } }
+      filter: { frontmatter: { title: { ne: "" } } }
     ) {
       edges {
         node {
           excerpt
           fields {
             slug
-            path
-            collection
+            # path
+            # collection
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
@@ -60,9 +91,16 @@ export const pageQuery = graphql`
             description
             source
             tags
+            image {
+              childImageSharp {
+                fluid(maxHeight: 500, quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
         }
       }
     }
   }
-`
+`;

@@ -1,39 +1,98 @@
-import React from "react"
-import styled from "styled-components"
-import Layout from "components/layout"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql, navigate } from 'gatsby';
+import Layout from 'components/layout';
+import Box from 'components/box';
+import Title from 'components/title';
+import Gallery from 'components/gallery';
+import IOExample from 'components/io-example';
 
-const Splash = styled.div`
-  margin: 25vh 0;
-  > * {
-    text-align: center;
-  }
-  > h1 {
-    animation: color-change 10s infinite;
-    font-size: 500%;
-    font-weight: 600;
-    line-height: 1;
+import { Button } from '../components/modal/modal.css';
 
-    @keyframes color-change {
-      0%   {color: var(--primary);}
-      10%  {color: var(--primary-light);}
-      50%  {color: var(--accent);}
-      90%  {color: var(--primary-light);}
-      100%   {color: var(--primary);}
+const Index = ({ data }) => {
+  const galleryData = data.allMarkdownRemark.edges.reduce((acc, edge) => {
+    acc.push({ ...edge.node.frontmatter, path: edge.node.fields.slug });
+    return acc;
+  }, []);
+  return (
+    <Layout>
+      <Box>
+        <Title as="h2" size="xl">
+          Hello, <br />
+          I’m Billy Bunn.
+        </Title>
+        <Title as="h2" size="large">
+          {data.homeJson.content.childMarkdownRemark.rawMarkdownBody}
+        </Title>
+      </Box>
+      <Box fluid>
+        <Title as="h3" size="medium">
+          Here’s some of my latest work
+        </Title>
+        <Gallery items={galleryData} clickable />
+        <Button onClick={() => navigate('/projects')}>
+          See more of my work
+        </Button>
+      </Box>
+      <div style={{ height: '50vh' }} />
+      {/* <IOExample /> */}
+    </Layout>
+  );
+};
+
+Index.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+export default Index;
+
+export const query = graphql`
+  query HomepageQuery {
+    homeJson {
+      title
+      content {
+        childMarkdownRemark {
+          html
+          rawMarkdownBody
+        }
+      }
+      gallery {
+        title
+        copy
+        image {
+          childImageSharp {
+            fluid(maxHeight: 500, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+
+    allMarkdownRemark(
+      limit: 3
+      filter: { frontmatter: { title: { ne: "" } } }
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            date
+            description
+            image {
+              childImageSharp {
+                fluid(maxHeight: 500, quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
-  > h2 {
-    font-size: 130%;
-    font-weight: 400;
-  }
-  > p {
-  }
-`
-
-export default () => (
-  <Layout>
-    <Splash>
-      <h1>Billy Bunn</h1>
-      <h2>Software Developer and former Public Accountant</h2>
-    </Splash>
-  </Layout>
-)
+`;

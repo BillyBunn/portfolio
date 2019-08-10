@@ -1,28 +1,49 @@
-import React from "react"
-import Layout from "components/layout"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import styled from 'styled-components';
+import { accent, primary, secondary } from '../constants/theme';
+import Layout from 'components/layout';
+import Box from 'components/box';
+import Title from 'components/title';
+import Head from 'components/head';
+import { Content } from '../templates/page';
 
-export default () => (
-  <Layout>
-    <h2>Let's talk</h2>
-    <p>
-      I'm always happy to meet new faces and chat about code. If you're in the
-      Seattle, WA area, let's grab coffee. Feel free to reach out however is
-      easiest for you.
-    </p>
-    <ul>
-      <li>
-        <a href="mailto:billy@billybunn.com?subject=Inquiry from BillyBunn.com">
-          Send me an email
-        </a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/billybunn/">
-          Connect with me on LinkedIn
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/billybunn">Tweet at me</a>
-      </li>
-    </ul>
-  </Layout>
-)
+const Contact = ({ data }) => {
+  return (
+    <Layout>
+      <Head pageTitle={data.contactJson.title} />
+
+      <Box centered>
+        <Title as="h3" size="medium">
+          Get in touch
+        </Title>
+        <Content
+          dangerouslySetInnerHTML={{
+            __html: data.contactJson.content.childMarkdownRemark.html,
+          }}
+        />
+      </Box>
+    </Layout>
+  );
+};
+
+Contact.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+export default Contact;
+
+export const query = graphql`
+  query ContactQuery {
+    contactJson {
+      title
+      content {
+        childMarkdownRemark {
+          html
+        }
+      }
+    }
+  }
+`;

@@ -1,20 +1,31 @@
-const path = require("path")
+const path = require('path');
+const siteConfig = require('./site-config');
 
 module.exports = {
-  // TODO: Add site metadata
   siteMetadata: {
-    title: `Billy Bunn | Software Developer`,
-    author: `Billy Bunn`,
-    description: `A software developer based in Seattle, WA`,
-    siteUrl: `https://billybunn.github.io`,
-    social: {
-      twitter: `billybunn`,
-    },
+    ...siteConfig,
   },
-
   plugins: [
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-offline`,
+    `gatsby-transformer-json`,
+    // `gatsby-transformer-remark`,
+    `gatsby-plugin-eslint`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/content`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/src/`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -29,14 +40,17 @@ module.exports = {
         name: `projects`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-webpack-size`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-react-svg`,
       options: {
-        name: `src`,
-        path: `${__dirname}/src/`,
+        rule: {
+          include: /images\/.*\.svg$/,
+        },
       },
     },
-    // `gatsby-transformer-remark`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -53,13 +67,11 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
+          // `gatsby-remark-prismjs`,
+          // `gatsby-remark-copy-linked-files`,
+          // `gatsby-remark-smartypants`,
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
   ],
-}
+};
