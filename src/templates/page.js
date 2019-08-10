@@ -87,14 +87,20 @@ export const Content = styled.article`
 `;
 
 const PrevAndNext = styled.div`
+  background: ${secondaryLight};
+  border-radius: 3px;
+  padding: 1rem 0;
   width: 100%;
+  p {
+    text-align: center;
+    margin: 1rem auto;
+  }
   ul {
-    background: ${secondaryLight};
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: space-between;
     list-style: none;
-    padding: 2rem 1rem;
+    padding: 0 1rem 2rem 1rem;
     margin: 0 auto;
     max-width: 1000px;
   }
@@ -166,6 +172,7 @@ export default ({ data, pageContext }) => {
 
       {/* <Box fluid> */}
       <PrevAndNext>
+        <p>Browse more projects</p>
         <ul>
           <li>
             {previous && (
@@ -174,7 +181,7 @@ export default ({ data, pageContext }) => {
               </ButtonLink>
             )}
           </li>
-          <li>Browse more projects</li>
+
           <li>
             {next && (
               <ButtonLink to={`${next.fields.slug}`} rel="next">

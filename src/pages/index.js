@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql, navigate } from 'gatsby';
 import Layout from 'components/layout';
 import Box from 'components/box';
 import Title from 'components/title';
 import Gallery from 'components/gallery';
 import IOExample from 'components/io-example';
-import { graphql, navigate } from 'gatsby';
 
 import { Button } from '../components/modal/modal.css';
 
@@ -35,7 +35,7 @@ const Index = ({ data }) => {
         </Button>
       </Box>
       <div style={{ height: '50vh' }} />
-      <IOExample />
+      {/* <IOExample /> */}
     </Layout>
   );
 };
