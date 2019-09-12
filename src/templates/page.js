@@ -34,12 +34,12 @@ export const Content = styled.article`
   }
 
   .gatsby-resp-image-link {
-    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.26);
+    box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.26);
     margin: 2rem 0rem;
   }
   ul {
     list-style: disc;
-    margin-left: 1.5em;
+    margin: 0 0 2rem 1.5rem;
     li {
       margin-bottom: 0.5rem;
     }
@@ -88,6 +88,19 @@ export const Content = styled.article`
       border-radius: 0px;
       color: inherit;
       border: none;
+    }
+  }
+  table {
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    th,
+    td {
+      border: 1px solid ${primary};
+      padding: 0.5rem;
+    }
+    th {
+      background: ${secondaryLight};
+      font-weight: bold;
     }
   }
 `;
