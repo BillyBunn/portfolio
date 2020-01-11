@@ -1,77 +1,98 @@
-const path = require('path');
-const siteConfig = require('./site-config');
+const path = require('path')
+const siteConfig = require('./site-config')
 
 module.exports = {
   siteMetadata: {
-    ...siteConfig,
+    ...siteConfig
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-offline`,
-    `gatsby-transformer-json`,
-    // `gatsby-transformer-remark`,
-    `gatsby-plugin-eslint`,
+    // Creates ImageSharp nodes from image types that are supported by the Sharp image processing library and provides fields in their GraphQL types for processing images in a variety of ways including resizing, cropping, and creating responsive images.
+    `gatsby-transformer-sharp`,
+
+    // Exposes several image processing functions built on the Sharp image processing library. A low-level helper plugin used by other Gatsby plugins.
+    `gatsby-plugin-sharp`,
+
+    // To support MDX content
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        name: `content`,
-        path: `${__dirname}/content`,
-      },
+        defaultLayouts: {
+          // default layout to wrap MDX files in pages/ dir
+          default: require.resolve('./src/components/Layout.js')
+          // posts: require.resolve("./src/components/posts-layout.js"),
+        },
+        gatsbyRemarkPlugins: [
+          // Makes any image in MDX files automatically handled by Gatsby image processing.
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 400,
+              wrapperStyle: `margin-bottom: 1em;`
+              // sizeByPixelDensity: true
+            }
+          }
+          // TODO: Add syntax highlighting for code blocks with prismjs
+          // https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/?=gatsby-remark-p
+          // from blog starter
+          // `gatsby-remark-prismjs`,
+
+          // TODO: configure and confirm smart quote plugin works
+          // `gatsby-remark-smartypants`
+        ],
+        // To fix bug with gatsby-remark-images and gatsby-plugin-mdx
+        // https://github.com/gatsbyjs/gatsby/issues/15486
+        plugins: [`gatsby-remark-images`]
+      }
     },
+
+    // Add a collection called "projects" that looks
+    // for files in content/projects/
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `src`,
-        path: `${__dirname}/src/`,
-      },
+        name: 'projects',
+        path: `${__dirname}/content/projects/`
+      }
     },
+
+    // So MDX files in `pages/` can references images via `../images/file-name.jpg`
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: path.join(__dirname, `src`, `images`),
-      },
+        path: `${__dirname}/content/images/`
+      }
     },
+
+    // Provides Theme UI context, prevents FOUC when using color modes
+    'gatsby-plugin-theme-ui',
+
+    // For sourcing images into Gatsby application from local filesystem.
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`)
+      }
+    },
+
+    // For sourcing project page content
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/projects`,
-        name: `projects`,
-      },
+        name: `projects`
+      }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-webpack-size`,
-    {
-      resolve: `gatsby-plugin-react-svg`,
-      options: {
-        rule: {
-          include: /images\/.*\.svg$/,
-        },
-      },
-    },
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          // `gatsby-remark-prismjs`,
-          // `gatsby-remark-copy-linked-files`,
-          // `gatsby-remark-smartypants`,
-        ],
-      },
-    },
-  ],
-};
+
+    // Provides drop-in support for server rendering data added with React Helmet
+    'gatsby-plugin-react-helmet'
+
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
+
+    // TODO: Enable and submit sitemap
+    // `gatsby-plugin-sitemap`,
+  ]
+}

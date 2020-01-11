@@ -1,159 +1,61 @@
-const path = require('path');
-const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
+const path = require('path')
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
-const { createFilePath } = require(`gatsby-source-filesystem`);
-
-// Create pages from markdown files ------------------------------
-// exports.createPages = ({ graphql, actions }) => {
-//   const { createPage } = actions;
-//   return graphql(
-//     `
-//       {
-//         allMarkdownRemark(
-//           sort: { fields: [frontmatter___date], order: DESC }
-//           limit: 1000
-//         ) {
-//           edges {
-//             node {
-//               fields {
-//                 slug
-//                 collection
-//                 path
-//               }
-//               frontmatter {
-//                 title
-//               }
-//             }
-//           }
-//         }
-//       }
-//     `
-//   ).then(result => {
-//     if (result.errors) {
-//       throw result.errors;
-//     }
-//     const allEdges = result.data.allMarkdownRemark.edges;
-
-//     // Project pages
-//     const projectPages = allEdges.filter(
-//       edge => edge.node.fields.collection === `projects`
-//     );
-
-//     projectPages.forEach((page, index) => {
-//       const previous =
-//         index === projectPages.length - 1 ? null : projectPages[index + 1].node;
-//       const next = index === 0 ? null : projectPages[index - 1].node;
-//       const filePath = page.node.fields.path;
-//       createPage({
-//         path: filePath,
-//         component: path.resolve(`./src/templates/project-page.js`),
-//         context: {
-//           slug: page.node.fields.slug,
-//           collection: page.node.fields.collection,
-//           previous,
-//           next,
-//         },
-//       });
-
-//     });
-
-//     // Non-project pages
-//     const pageEdges = allEdges.filter(
-//       edge => edge.node.fields.collection === `src`
-//     );
-//     pageEdges.forEach(page => {
-//       createPage({
-//         path: page.node.fields.slug,
-//         component: path.resolve('./src/templates/page.js'),
-//         context: {
-//           slug: page.node.fields.slug,
-//         },
-//       });
-//     });
-
-//     return null;
-//   });
-// };
-
-// Create nodes with fields for all markdown files -------------------
+// Create nodes for all MDX files
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
-  if (
-    node.internal.type === `MarkdownRemark` &&
-    getNode(node.parent).relativePath.includes('projects/')
-  ) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` });
+  const { createNodeField } = actions
+  // you only want to operate on `Mdx` nodes. If you had content from a
+  // remote CMS you could also check to see if the parent node was a
+  // `File` node here
+  if (node.internal.type === 'Mdx') {
+    const value = createFilePath({ node, getNode })
     createNodeField({
+      // Name of the field you are adding
+      name: 'slug',
+      // Individual MDX node
       node,
-      name: `slug`,
-      value: slug,
-    });
+      // Generated value based on filepath with "blog" prefix. you
+      // don't need a separating "/" before the value because
+      // createFilePath returns a path with the leading "/".
+      value: `/projects${value}`
+    })
   }
-};
+}
 
 // Make the pages
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
-  return graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  // Destructure the createPage function from the actions object
+  const { createPage } = actions
+  const result = await graphql(`
+    query {
+      allMdx {
+        edges {
+          node {
+            id
+            fields {
+              slug
             }
           }
         }
       }
-    `
-  ).then(result => {
-    const projectPages = result.data.allMarkdownRemark.edges.filter(
-      edge => edge.node.fields && edge.node.fields.slug
-    );
-
-    projectPages.forEach((page, idx) => {
-      const previous =
-        idx === projectPages.length - 1 ? null : projectPages[idx + 1].node;
-      const next = idx === 0 ? null : projectPages[idx - 1].node;
-      const filePath = page.node.fields.slug;
-
-      createPage({
-        path: filePath,
-        component: path.resolve(`./src/templates/page.js`),
-        context: {
-          slug: page.node.fields.slug,
-          collection: page.node.fields.collection,
-          previous,
-          next,
-        },
-      });
-    });
-  });
-};
-
-exports.onCreateWebpackConfig = ({
-  stage,
-  getConfig,
-  rules,
-  loaders,
-  actions,
-}) => {
-  actions.setWebpackConfig({
-    resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-      plugins: [
-        new DirectoryNamedWebpackPlugin({
-          exclude: /node_modules/,
-        }),
-      ],
-    },
-  });
-};
+    }
+  `)
+  if (result.errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
+  }
+  // Create blog post pages.
+  const projects = result.data.allMdx.edges
+  // you'll call `createPage` for each result
+  projects.forEach(({ node }, index) => {
+    createPage({
+      // This is the slug you created before
+      // (or `node.frontmatter.slug`)
+      path: node.fields.slug,
+      // This component will wrap our MDX content
+      component: path.resolve(`./src/templates/projects-page-layout.js`),
+      // You can use the values in this context in
+      // our page layout component
+      context: { id: node.id }
+    })
+  })
+}
